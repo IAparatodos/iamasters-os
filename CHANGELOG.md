@@ -8,8 +8,52 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### En construcción
-- v0.4.0: `/install-skill <github-url>` con validación + `/install-mcp` + lista curada
+### Próximas versiones (en backlog)
+- v0.5.0: skills `marketing-ugc-script`, `marketing-email-sequence`, `operations-meeting-notes`, `operations-task-priority`, `strategy-trending-research`, `tool-youtube-transcript`, `viz-excalidraw-diagram`
+- v0.6.0: dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
+- v1.0.0: release pública estable
+
+---
+
+## v0.4.0 — Marketplace local + MCPs curados (2026-05-07)
+
+### Added
+- **`/install-skill <github-url>`** comando para instalar skills externas con validación previa:
+  - Descarga a `/tmp/iamasters-os-skill-validate-<hash>/`
+  - Valida estructura (SKILL.md, YAML frontmatter, name kebab-case, description 50-500 chars)
+  - Detecta verbos de intención en description (afecta activación)
+  - Comprueba scripts por patrones peligrosos (rm -rf /, eval, dd if=, mkfs, etc.)
+  - Detecta credenciales hardcoded (regex API keys, tokens)
+  - Comprueba conflicto con skills locales del mismo nombre
+  - Output: report con OK/WARN/ERROR + recomendaciones de instalación
+- **`/install-mcp <name>`** comando para instalar MCP servers:
+  - Lista curada en `docs/mcps-curated.md` (top 5 + 5 útiles + warnings)
+  - Configura `.mcp.json` con templates probados
+  - Mode custom para URLs no curadas (con warnings)
+- **`scripts/validate-skill.sh`** ejecuta toda la validación
+- **`docs/mcps-curated.md`** lista mantenida de 10 MCPs útiles para operadores IA:
+  - ⭐ Top 5: context7, github, supabase, notion, firecrawl
+  - 🔧 Útiles: linear, gmail (read-only), slack, filesystem
+  - ⚠️ MCPs a evitar (write redes sociales sin gates, scopes opacos)
+  - Patrón de token budget (5-7 MCPs activos máximo)
+- **`docs/skills-recommended.md`** lista de skills externas validadas:
+  - Anthropic core: skill-creator, visual-explainer, pdf, docx, xlsx
+  - Marketing: content-strategy, social-content, email-marketing-bible, ad-creative
+  - Operations: marketing-psychology, product-management, saas-revenue-growth-metrics
+  - Tech: nextjs-*, vercel-deployment, tailwind-design-system, web-security-audit
+  - ⚠️ Skills a evitar (sin description clara, duplicadas, "todo en uno")
+- **`docs/multi-client-guide.md`** guía operativa multi-cliente:
+  - Cuándo usar / no usar
+  - Estructura herencia CLAUDE.md
+  - Skills custom por cliente vs skills globales del repo
+  - Best practices de seguridad: separación de info entre clientes
+  - Troubleshooting típico
+
+### Decisiones de diseño
+- Validate-skill.sh siempre crea TMP dir y NO elimina automáticamente (operador puede inspeccionar manualmente)
+- Hardcoded secrets detection usa regex permissivo (puede haber falsos positivos, mejor warning que false-negative)
+- MCP install no toca .mcp.json sin confirmación explícita del operador
+- Curated lists son opinionated: solo skills/MCPs con experiencia real >2 semanas
 
 ---
 
