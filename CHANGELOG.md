@@ -15,6 +15,61 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## v0.5.1 — Onboarding profundo y conversacional (2026-05-13)
+
+> **Visión**: el wizard inicial era un formulario disfrazado de conversación (14 preguntas predefinidas, respuestas planas). Esta release lo convierte en una entrevista real adaptativa, con profundización dinámica según las respuestas. Y añade una segunda fase opcional (`meta-deep-dive`) que profundiza 22-25 dimensiones residuales en ~25 min.
+
+### Changed — `meta-onboarding-wizard` reescrita
+
+- **De formulario a entrevista conversacional adaptativa**. Ya no hay preguntas literales en el SKILL.md — solo **8 dimensiones críticas** que el agente cubre dinámicamente.
+- **Reglas de profundización explícitas**: cuándo insistir (respuesta corta, abstracta, cifra sin contexto, adjetivo sin ejemplo) vs cuándo pasar (respuesta rica, fatiga del usuario, "no sé" honesto).
+- **Repertorio de 6 técnicas conversacionales** en `references/tecnicas-conversacionales.md`: pedir ejemplo concreto, 5 whys ligero (máx 2 niveles), inversión, espejo corto, anclaje temporal, aceptar el "no sé".
+- **Anti-formulario explícito** documentado: prohibido numerar preguntas visibles al usuario, anunciar la siguiente pregunta, doble pregunta por turno, tono terapéutico, emojis durante la entrevista, juicio implícito, validación falsa tipo "qué buena pregunta".
+- **Definición de "done"** clara por dimensión en `references/dimensiones-express.md` — cada dimensión exige dato sólido (no genérico, no evasivo) antes de cerrar el wizard.
+- Tiempo objetivo del express: 10-12 min (sin cambios respecto a versión anterior, pero ahora con info más valiosa por turno).
+
+### Added — `meta-deep-dive` (skill nueva)
+
+- **Segunda fase del onboarding** — opcional pero recomendada al día siguiente del wizard inicial.
+- Profundiza **22-25 dimensiones residuales** organizadas en 4 bloques:
+  - **A · Persona profunda** (7): horario productivo, interrupciones, contexto vital, motivadores profundos, drenadores, estilo de comunicación con IA, palabras/tonos prohibidos.
+  - **B · Negocio profundo** (6): salud financiera (rango), margen, ticket medio, diferencial real, side projects, fricciones del modelo.
+  - **C · Equipo y clientes** (6, condicional): tamaño equipo, roles + dinámica, comunicación interna, delegación, clientes top, clientes problemáticos.
+  - **D · Foco profundo** (6): decisión pendiente, meta 3 años profesional, meta 3 años vital, miedo profesional, métrica semanal, definición personal de éxito.
+- **Idempotente**: si el operador para a la mitad, `operator-state.deepDiveProgress` guarda el avance. Retoma donde se quedó.
+- **Branching condicional**: si trabaja solo, el bloque equipo se reduce a 2 dimensiones (clientes top + problemáticos).
+- **Checkpoints cada 7 dimensiones**: oportunidad de pausar sin perder progreso.
+- Tarda ~25-30 min total.
+- Reglas de profundización y técnicas conversacionales idénticas al wizard inicial — `references/tecnicas-conversacionales.md` duplicada para autocontención.
+
+### Added — `/deep-dive` (slash command nuevo)
+
+- Invoca `meta-deep-dive` con detección automática de estado: primera vez vs retomar vs ya completado.
+- Avisa si el operador no ha hecho aún el onboarding inicial (lo redirige al wizard).
+
+### Changed — `meta-start-here` actualizada
+
+- Detecta `deepDiveCompleted: false` + `onboardingDate > 12h` y muestra **recordatorio breve** (1 línea) al final del saludo diario hasta que el operador complete la deep-dive.
+- No es intrusivo: aparece como PD, no como bloqueo del flow normal.
+
+### Filosofía v0.5.1
+
+- **La diferencia entre output decente y output que parece tuyo está en el contexto que el sistema tiene de ti**. Una entrevista de 14 preguntas planas genera contexto plano. Una entrevista adaptativa de 30+ preguntas dinámicas genera contexto que el sistema puede usar para hablar como tú.
+- **Honestidad sobre el coste de tiempo**: el wizard inicial sigue siendo ~10 min (no inflar el primer wow). La deep-dive (~25 min) es opcional, separada, recomendada al día siguiente.
+- **No formularios disfrazados**: si el agente termina haciendo las mismas preguntas en el mismo orden a todos los operadores, hemos fallado. La entrevista tiene que sentirse como conversación humana, no como tour guiado.
+
+### Counts post-v0.5.1
+
+| Categoría | v0.5.0 | v0.5.1 |
+|---|---:|---:|
+| `_meta/` | 9 | **10** (+meta-deep-dive) |
+| Resto | 13 | 13 |
+| **Total core** | **22** | **23** |
+| Opcional | 1 (cognito) | 1 (cognito) |
+| Slash commands | 7 | **8** (+`/deep-dive`) |
+
+---
+
 ## v0.5.0 — Sistema vivo + skills automation/email/strategy + /aprende (2026-05-13)
 
 > **Visión**: convertir iAmasters OS en un **sistema vivo** que crece con la comunidad. Cierre del feedback de Fernando Montero sobre v0.4.3 con decisiones tomadas explícitamente (vendoreo selectivo, plugins Anthropic vía marketplace, comando educativo `/aprende`).

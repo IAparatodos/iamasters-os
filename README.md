@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iamasters-academy/iamasters-os/releases"><img src="https://img.shields.io/badge/version-v0.5.0-orange.svg" alt="Version"></a>
+  <a href="https://github.com/iamasters-academy/iamasters-os/releases"><img src="https://img.shields.io/badge/version-v0.5.1-orange.svg" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="vendor/sinapsis/"><img src="https://img.shields.io/badge/engine-Sinapsis%20v4.5-purple.svg" alt="Powered by Sinapsis"></a>
   <a href="https://angelaparicio.com"><img src="https://img.shields.io/badge/maintained%20by-Angel%20Aparicio-ff8c42.svg" alt="Maintained by Angel Aparicio"></a>
@@ -43,7 +43,7 @@ Claude Code clonará el repo, ejecutará el instalador, te entrevistará por blo
 
 1. **Sinapsis v4.5 (engine)** — memoria persistente, instintos auto-aprendidos, skills on-demand. Vendoreado intacto del [repo de Luis Pitik](https://github.com/Luispitik/sinapsis).
 2. **Capa OS** — brand context (voice, positioning, ICP), agent context sectorizado (me, work, team, priorities, goals), proyectos estructurados, multi-cliente con templates por vertical.
-3. **Skills curadas** — 22 skills validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
+3. **Skills curadas** — 23 skills validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
 
 > 🌱 **Sistema vivo**: el catálogo crece con la comunidad. Cuando una skill nueva de IA Masters Academy demuestra valor en producción, entra al repo. Ver [`docs/skills-recommended.md`](docs/skills-recommended.md) para proponer una.
 
@@ -61,7 +61,7 @@ No requiere conocimientos de programación. Sí requiere paciencia para configur
 
 - ✅ Memoria que persiste entre sesiones (no más "explícame tu stack otra vez")
 - ✅ Tu primer entregable real generado por el sistema en los primeros 20 min (welcome-quick-win)
-- ✅ 22 skills curadas, instaladas, listas para activarse cuando hablas con Claude
+- ✅ 23 skills curadas, instaladas, listas para activarse cuando hablas con Claude
 - ✅ Brand context (voz, posicionamiento, ICP) generable en 30 minutos extra
 - ✅ Multi-cliente listo para escalar (4 templates de vertical incluidos)
 - ✅ Sistema de aprendizaje continuo: lo que repites se gradúa a regla
@@ -116,7 +116,8 @@ Lo más útil para arrancar:
 ```
 _meta/                            Sistema y rituales del OS
 ├── meta-skill-creator            Crea skills nuevas siguiendo el patrón canónico
-├── meta-onboarding-wizard        Entrevista por bloques, sectoriza context
+├── meta-onboarding-wizard        Entrevista express adaptativa (8 dimensiones críticas)
+├── meta-deep-dive                🆕 Entrevista profunda adaptativa (22-25 dimensiones)
 ├── meta-start-here               Ritual diario de inicio
 ├── meta-wrap-up                  Ritual diario de cierre
 ├── welcome-quick-win             Tu primer entregable garantizado en 5 min

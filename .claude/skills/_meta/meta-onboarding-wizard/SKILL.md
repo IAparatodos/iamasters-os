@@ -1,406 +1,242 @@
 ---
 name: meta-onboarding-wizard
-description: Lanza el onboarding inicial cuando un operador instala iAmasters OS por primera vez. Entrevista por bloques temáticos (no todo de golpe) y llena los archivos sectorizados context/me.md, work.md, team.md, current-priorities.md, goals.md + configura defaults inteligentes en settings + ofrece modo cognito guiado/completo + lanza welcome-quick-win al cerrar para garantizar primer wow. Solo se ejecuta UNA vez por instalación.
+description: Lanza el onboarding inicial cuando un operador instala iAmasters OS por primera vez. NO es un formulario — es una entrevista conversacional adaptativa que cubre 8 dimensiones críticas (identidad, negocio, foco, objetivos) profundizando dinámicamente según las respuestas. Llena los archivos sectorizados context/me.md, work.md, team.md, current-priorities.md, goals.md + configura defaults inteligentes + ofrece modo cognito + cierra anunciando la skill `meta-deep-dive` para profundizar el día siguiente. Solo se ejecuta UNA vez por instalación.
 ---
 
 # meta-onboarding-wizard
 
-> Inspirado en el patrón "interview-by-section" de [`Luispitik/claude-code-second-brain`](https://github.com/Luispitik/claude-code-second-brain). En lugar de bombardear con 18 preguntas seguidas, vamos por bloques temáticos con resúmenes intermedios — sensación humana, no formulario burocrático.
+> **Filosofía**: esto NO es un formulario con 15 preguntas predefinidas. Es una entrevista conversacional. Las preguntas concretas las decide el agente en cada turno, según la respuesta anterior. Lo que está fijo son las **dimensiones a cubrir** (qué información tiene que quedar capturada) y las **reglas de profundización** (cómo decide si insistir o pasar a otra dimensión).
+>
+> El express cubre solo las **8 dimensiones mínimas críticas** para que el OS quede operativo. La skill `meta-deep-dive` (al día siguiente, opcional pero recomendada) cubre las 22 dimensiones restantes.
 
 ## Cuándo se invoca
 
-- Sinapsis lee `~/.claude/skills/_operator-state.json` y tiene `needsOnboarding: true`
-- O bien: existe operator-state pero `context/me.md` no existe (en plantilla)
-- El usuario explícitamente pide reconfigurar: "vuelve a hacerme el onboarding"
+- `~/.claude/skills/_operator-state.json` tiene `needsOnboarding: true`
+- O bien: operator-state existe pero `context/me.md` no existe o está vacío
+- O bien: el usuario pide explícitamente "vuelve a hacerme el onboarding"
 
-NO se invoca:
-- Cuando hay `context/me.md` rellenado (pasa al flujo `meta-start-here` normal)
-- Cuando hay daily summary del día anterior (continuidad)
+NO se invoca cuando:
+- `context/me.md` ya está rellenado (pasa al flujo `meta-start-here`)
+- Hay daily summary del día anterior (continuidad normal)
+
+## Las 8 dimensiones críticas que TIENE que capturar
+
+Lee también [`references/dimensiones-express.md`](references/dimensiones-express.md) para el detalle de qué información concreta debe quedar en cada una.
+
+| # | Dimensión | Bloque | Archivo destino |
+|:--|---|---|---|
+| 1 | Identidad básica (nombre + 1 frase pro) | A · Persona | `context/me.md` |
+| 2 | Ubicación + idioma | A · Persona | `context/me.md` |
+| 3 | Negocio principal (qué hace) | B · Negocio | `context/work.md` |
+| 4 | Modelo de ingresos | B · Negocio | `context/work.md` |
+| 5 | Cliente ideal (descripción inicial) | B · Negocio | `context/work.md` |
+| 6 | Stack diario | B · Negocio | `context/work.md` |
+| 7 | Foco del mes (1-3 prioridades) | D · Foco | `context/current-priorities.md` |
+| 8 | Objetivo a 12 meses | D · Foco | `context/goals.md` |
+
+**Definición de "done"**: cada dimensión tiene al menos 1 dato sólido capturado (no "todavía no sé", no respuesta vacía, no genérica tipo "ayudar a la gente").
+
+**Tiempo objetivo**: 10-12 minutos. Si tarda más, algo va mal con la profundización (probablemente estás insistiendo demasiado en una dimensión).
+
+## Reglas de profundización
+
+Las preguntas concretas las decide el agente en cada turno. Para cada respuesta del usuario, aplica estas reglas:
+
+### Señales que piden profundizar (haz 1 follow-up, no más)
+
+| Señal en la respuesta | Movimiento |
+|---|---|
+| Respuesta de menos de 15 palabras en una dimensión clave | "Cuéntame más" o pide ejemplo concreto |
+| Cifra sin contexto ("facturo 30K") | Pregunta tendencia (creciendo/plano/cayendo) o ticket medio |
+| Adjetivo abstracto ("equipo problemático", "cliente difícil") | Pide ejemplo de la última semana |
+| Nombre propio mencionado al pasar ("Pilar está saturada") | Anota mentalmente y pregunta el rol/relación |
+| Generalidad sin sustancia ("ayudo a la gente con su negocio") | Reformula: "¿gente cómo? Si tuviera que pintar a tu cliente perfecto, ¿cómo es?" |
+| Contradicción aparente entre dos respuestas | Pide clarificación 1 línea, sin juicio ni debate |
+
+### Señales que piden NO profundizar (pasa a la siguiente dimensión)
+
+| Señal | Movimiento |
+|---|---|
+| Respuesta rica y completa (>50 palabras con datos concretos) | Salta a siguiente dimensión. No insistas |
+| Usuario dice "no sé", "todavía no", "después" en una dimensión | Acepta. Apunta "(por definir)" y propón skill concreta para resolverlo luego |
+| Respuestas cortas seguidas (3+ turnos) | Señal de fatiga. Acelera, salta dimensiones que tengan dato mínimo |
+| Usuario muestra urgencia ("siguiente", "ya está", "pasa") | Respeta. Cierra el wizard antes de que abandone |
+
+### Cuando una dimensión no aplica
+
+- Usuario es solo curioso, sin negocio activo → marca `avatar: "curioso"`, salta dimensiones 3-6 con "(no aplica todavía)", marca operator-state.
+- Usuario tiene varios negocios paralelos → captura el principal en `work.md`, anota los otros en sección "Negocios paralelos" sin profundizar (eso es para deep-dive).
+
+## Técnicas conversacionales permitidas
+
+Lee [`references/tecnicas-conversacionales.md`](references/tecnicas-conversacionales.md) para el detalle de cada una con ejemplos en castellano.
+
+Repertorio mínimo:
+1. **Pedir ejemplo concreto** — "dame un ejemplo de la última semana"
+2. **5 whys ligero** — máximo 2 niveles de profundidad
+3. **Inversión** — "y si no consigues eso, ¿qué pasa?"
+4. **Espejo corto** — "entonces lo principal es X. ¿Vamos a Y?"
+5. **Anclaje temporal** — "¿esto te pasaba hace un año también?"
+
+## Anti-formulario (prohibido explícitamente)
+
+- ❌ Decir "pregunta 3 de 10" o cualquier numeración visible al usuario
+- ❌ Anunciar la siguiente pregunta antes de hacerla
+- ❌ Hacer 2 preguntas en el mismo turno (excepto al inicio: "¿cómo te llamas y dónde vives?")
+- ❌ Listas de bullets en TUS respuestas durante la entrevista (solo al cerrar el resumen final)
+- ❌ Repetir literalmente la respuesta del usuario "para confirmar" (suena a bot)
+- ❌ Anunciar "ahora pasamos al bloque B" — los bloques son interna del wizard, no del usuario
+- ❌ Usar emojis (excepto en el cierre final, ahí están permitidos)
 
 ## Process
 
-### Paso 1 · Bienvenida y confirmación
+### Paso 1 · Apertura
 
-Mensaje exacto al usuario:
-
-```
-👋 Bienvenido a iAmasters OS.
-
-Voy a hacerte una entrevista guiada para que el sistema sepa quién
-eres, qué haces, y cómo quieres trabajar conmigo. Tarda ~10 minutos
-y solo se hace UNA vez.
-
-Vamos por bloques cortos para que no se haga pesado. Después te
-genero tu primer entregable real (5 min más). Total: ~15 min.
-
-¿Empezamos?
-```
-
-Espera "sí", "vamos", "ok" antes de seguir.
-
-### Paso 2 · Bloque A · Identidad (→ `context/me.md`)
-
-3 preguntas seguidas (sin pausar entre ellas, son rápidas):
-
-1. ¿Cómo te llamas?
-2. ¿Dónde vives? (ciudad / país, para timezone y contexto cultural)
-3. ¿Cómo te describes profesionalmente en 1 frase?
-
-Tras recibir las 3 respuestas, escribe `context/me.md`:
-
-```markdown
-# Me · <nombre>
-
-## Identidad
-- **Nombre**: <nombre>
-- **Ubicación**: <ciudad, país>
-- **Timezone**: <calculado de ubicación>
-- **Idioma**: <inferido, default castellano>
-
-## Cómo me describo profesionalmente
-> <respuesta literal a pregunta 3>
-
-## Cómo quiero que Claude me hable
-
-(Se llena en el Bloque F sobre estilo)
-
----
-*Última actualización: <fecha>*
-```
-
-Confirma al usuario:
+Mensaje exacto:
 
 ```
-Listo bloque 1. Vamos a tu negocio.
+Bienvenido a iAmasters OS.
+
+Antes de generarte nada, necesito conocerte un poco. No es un
+formulario — es una conversación rápida. Te pregunto, me cuentas,
+y si algo me parece interesante te pido más detalle.
+
+Tarda ~10 minutos y solo se hace una vez. Al cerrar te genero
+tu primer entregable real para que veas el sistema funcionando.
+
+¿Empezamos? Dime tu nombre y dónde vives.
 ```
 
-### Paso 3 · Bloque B · Negocio (→ `context/work.md`)
+Espera respuesta. NO esperes "sí/vamos/ok" — la apertura ya pide datos.
 
-4 preguntas, una por una con micro-feedback entre cada:
+### Paso 2 · Entrevista adaptativa
 
-1. ¿Cuál es tu negocio principal? (nombre + 1 frase de qué hace)
-2. ¿Cómo ganas dinero hoy? (servicios, productos, suscripciones, ads, mix)
-3. ¿Quién es tu cliente ideal? (descripción concreta — si no lo tienes claro, OK, lo trabajamos después)
-4. ¿Qué herramientas usas a diario? (lista corta — Notion, GHL, Google Workspace, etc.)
+Recorre las 8 dimensiones en este orden lógico (pero NO lo anuncies al usuario):
 
-Tras las 4 respuestas, escribe `context/work.md`:
+1. **Identidad** (nombre + 1 frase pro) — sale de la respuesta a la apertura. Si solo dio nombre y ciudad, pregunta la frase pro.
+2. **Ubicación + idioma** — ya está si dijo ciudad. Si no, pregúntala.
+3. **Negocio principal** — "¿A qué te dedicas? Cuéntamelo como se lo contarías a alguien en una cena."
+4. **Modelo de ingresos** — derivado del paso 3. Si no quedó claro, "¿de qué viene el dinero hoy? Servicios, productos, suscripciones, mix..."
+5. **Cliente ideal** — "Pinta a tu cliente perfecto. Sector, tamaño, momento en el que llegan a ti, lo que sea." Aplica reglas de profundización si la respuesta es genérica.
+6. **Stack diario** — "¿Con qué herramientas trabajas día a día? Las imprescindibles."
+7. **Foco del mes** — "¿En qué estás centrado ESTE mes? Si tuvieras que elegir 2-3 cosas que llevarte por delante."
+8. **Objetivo 12 meses** — "Mírate dentro de 12 meses. ¿Qué tiene que pasar para que digas 'el año mereció la pena'?"
 
-```markdown
-# Work · <negocio principal>
+Para cada respuesta, aplica las **reglas de profundización**. Sigue las **técnicas conversacionales**. Respeta el **anti-formulario**.
 
-## Qué hago
-> <respuesta 1>
+**Importante**: si una respuesta cubre 2 dimensiones de golpe (ej. el usuario en el paso 3 ya menciona su modelo de ingresos), márcalas ambas como capturadas y pasa a la siguiente sin cubrir.
 
-## Cómo gano dinero
-<respuesta 2 estructurada como bullets si tiene varios streams>
+### Paso 3 · Escritura de archivos sectorizados
 
-## Cliente ideal (ICP)
-> <respuesta 3>
-> 
-> *Nota: este ICP se refinará con la skill `marketing-icp` cuando estés listo.*
+Solo cuando las 8 dimensiones tienen dato sólido, escribe los archivos. **Nunca durante la entrevista**.
 
-## Stack actual
-<respuesta 4 como tabla o lista>
+Estructura de cada archivo: ver [`references/dimensiones-express.md`](references/dimensiones-express.md) sección "Plantillas de output".
 
-## Otros negocios / proyectos paralelos
+Archivos a crear:
+- `context/me.md` (dimensiones 1-2)
+- `context/work.md` (dimensiones 3-6)
+- `context/current-priorities.md` (dimensión 7)
+- `context/goals.md` (dimensión 8)
 
-(añadir aquí si el usuario los menciona)
+También inicializa con header canónico (si no existen):
+- `context/team.md` (vacío, indica que se llena en deep-dive o cuando contrate)
+- `context/decisions-log.md` (header inspirado en second-brain de Luis Pitik)
+- `context/learnings.md` (header)
+- `context/soul.md` (personalidad del agente — copia el bloque estándar)
 
----
-*Última actualización: <fecha>*
-```
+### Paso 4 · Configuración técnica rápida
 
-Micro-feedback al usuario:
+3 preguntas seguidas (estas SÍ son rápidas y directas — son técnicas, no exploratorias):
 
-```
-✓ Bloque 2 (negocio) anotado.
-```
+1. "¿Tu nivel técnico? Cero (nunca tocaste terminal) / intermedio / avanzado"
+2. "¿Idioma de outputs hacia tus clientes? Castellano / inglés / bilingüe / otro"
+3. "¿Tienes Firecrawl API key? Si no, te la salto y el sistema funciona igual con fallback manual."
 
-### Paso 4 · Bloque C · Equipo (→ `context/team.md`)
-
-Pregunta 1: "¿Trabajas solo o con un equipo? (solo / 1-3 personas / 4-10 / más de 10)"
-
-**Si trabaja solo**: 
-- Crea `context/team.md` con header + nota "Trabajas solo. Cuando contrates a alguien, ejecuta este wizard de nuevo o edita este archivo manualmente."
-- Salta al Bloque D.
-
-**Si tiene equipo** (cualquier tamaño): pregunta 2: "Cuéntame quién es cada uno con rol en 1 línea (ej: Ana — diseñadora, lleva contenido). Si son muchos, los principales 3-5."
-
-Tras respuesta, escribe `context/team.md`:
-
-```markdown
-# Team
-
-## Estructura
-- **Tamaño**: <solo | 1-3 | 4-10 | 10+>
-
-## Personas
-
-| Nombre | Rol | Notas |
-|---|---|---|
-| <Ana> | <Diseñadora> | <lleva contenido> |
-| ... | ... | ... |
-
-## Cómo nos comunicamos
-(rellena el usuario después si quiere — Slack, WhatsApp, reuniones semanales, etc.)
-
----
-*Última actualización: <fecha>*
-```
-
-### Paso 5 · Bloque D · Foco actual (→ `context/current-priorities.md`)
-
-2 preguntas:
-
-1. ¿En qué estás focalizado ESTE mes? (1-3 prioridades)
-2. ¿Qué cuello de botella te frena ahora mismo?
-
-Tras respuestas, escribe `context/current-priorities.md`:
-
-```markdown
-# Current priorities
-
-> **Nota**: este archivo cambia mensualmente. Ejecuta el comando
-> `/update-priorities` o edítalo cuando tu foco cambie.
-
-## Foco del mes (<mes año>)
-
-1. <prioridad 1>
-2. <prioridad 2>
-3. <prioridad 3>
-
-## Cuello de botella actual
-
-> <respuesta 2>
-
-## Decisiones abiertas
-
-(las skills `six-hats` y `decisions-log` llenarán esta sección con
-el tiempo)
-
----
-*Última actualización: <fecha>*
-```
-
-Micro-feedback:
-
-```
-✓ Bloque 4 (foco actual) anotado.
-```
-
-### Paso 6 · Bloque E · Objetivos (→ `context/goals.md`)
-
-1 pregunta abierta: "¿Cuál es el objetivo grande que quieres conseguir en los próximos 12 meses? Algo concreto si puedes (€X de revenue, lanzar Y producto, contratar Z personas)."
-
-Tras respuesta, escribe `context/goals.md`:
-
-```markdown
-# Goals
-
-## Objetivo 12 meses
-
-> <respuesta literal del usuario>
-
-## Hitos trimestrales
-
-(no preguntados todavía. Cuando estés listo, ejecuta la skill
-`strategy-quarterly-planning` o edítalo manual.)
-
-| Trimestre | Hito objetivo | Estado |
-|---|---|---|
-| Q3 | (por definir) | — |
-| Q4 | (por definir) | — |
-| Q1+ | (por definir) | — |
-
-## Norte estratégico
-
-(qué decisión tomar cuando dudes — añadir cuando tengas claridad)
-
----
-*Última actualización: <fecha>*
-```
-
-### Paso 7 · Bloque F · Configuración técnica
-
-3 preguntas seguidas:
-
-1. **Nivel técnico**: ¿cero / intermedio / avanzado? (cero = nunca abriste terminal antes)
-2. **Idioma de outputs hacia tus clientes**: castellano / inglés / bilingüe / otro
-3. **Firecrawl API key**: ¿tienes una? Si no, ofrécela: "https://www.firecrawl.dev tiene 500 créditos free. Sin esto algunas skills piden contenido manual." Ofrece pegarla ahora.
-
-Construye/actualiza `~/.claude/skills/_operator-state.json` con todas las respuestas hasta ahora más:
+Guarda en `~/.claude/skills/_operator-state.json`:
 - `needsOnboarding: false`
 - `onboardingDate: <fecha actual>`
-- `welcomeCompleted: false` (se pone true tras Paso 9)
+- `welcomeCompleted: false`
+- `deepDiveCompleted: false`  ← NUEVO en v0.5
 - `firecrawlAvailable: true|false`
-- `cognitoMode: pending` (se elige en Paso 8)
+- `cognitoMode: "guiado"` (default; puede cambiarse después con `/cognito-mode`)
 - `technicalLevel: <respuesta>`
 - `clientOutputLanguage: <respuesta>`
 
-Si nivel técnico = cero, ajusta `.claude/settings.json` para activar plan-mode por defecto y permisos más conservadores (no `Bash(npm install)` etc.).
+Si nivel técnico = cero: ajusta `.claude/settings.json` para permisos más conservadores y plan-mode por defecto.
 
-### Paso 8 · Bloque G · Modo cognito
+### Paso 5 · Lanzamiento de welcome-quick-win
 
-Pregunta exacta:
-
-```
-Una skill que vas a usar bastante es `cognito` — un sistema operativo
-de pensamiento con varios modos cognitivos (divergente, crítico,
-ejecutor, etc.) que se aplican según la fase del proyecto.
-
-Te ofrezco dos modos:
-
-  [1] Guiado — yo elijo automáticamente el modo cognitivo según el
-      contexto (4 modos esenciales: divergente, crítico, ejecutor,
-      sintetizador). Recomendado si empiezas.
-
-  [2] Completo — accedes a los 7 modos cognitivos con las 5 fases de
-      proyecto (35 combinaciones posibles). Más potente, más curva
-      de aprendizaje.
-
-Puedes cambiarlo después con `/cognito-mode <guiado|completo>`.
-¿Cuál prefieres?
-```
-
-Default si no responde: [1] Guiado.
-
-Guarda en operator-state como `cognitoMode: "guiado" | "completo"`.
-
-### Paso 9 · Inicialización archivos sistema
-
-Crea archivos faltantes con headers canónicos:
-
-1. **`context/decisions-log.md`** (si no existe):
-```markdown
-# Decisions log
-
-Diario append-only de decisiones del operador.
-Patrón inspirado en [claude-code-second-brain](https://github.com/Luispitik/claude-code-second-brain) de Luis Pitik.
-
-> Esta skill (`decisions-log`) se invoca automáticamente cuando
-> tomas una decisión estratégica. También puedes invocarla
-> manualmente: "registra esta decisión".
-
----
-```
-
-2. **`context/learnings.md`** (si no existe):
-```markdown
-# Learnings
-
-Feedback consolidado de skills, append-only.
-Cada sección corresponde a una skill que registró algo aprendido.
-
----
-```
-
-3. **`context/soul.md`** (si no existe):
-```markdown
-# Soul · personalidad del agente
-
-> Cómo respondes al usuario. Esto es estático (cambia poco).
-
-## Tono
-- Directo, sin rodeos
-- Cálido pero no efusivo
-- 2-3 opciones máx con recomendación, no listas exhaustivas
-
-## Idioma
-- Castellano siempre con el operador
-- Outputs cliente en el idioma configurado en `me.md`
-
-## Lo que NO haces
-- Vender humo
-- Inflar palabras vacías
-- Ejecutar acciones destructivas sin confirmar
-
----
-```
-
-4. **`projects/welcome/`** (directorio vacío, listo para welcome-quick-win)
-
-### Paso 10 · Bloque H · Lanzamiento welcome quick-win
-
-Mensaje al usuario:
+Mensaje:
 
 ```
-🎉 Setup completo. He creado tu contexto:
+🎉 Setup mínimo completo. Tengo:
 
-  ✓ context/me.md — tu identidad
-  ✓ context/work.md — tu negocio
-  ✓ context/team.md — tu equipo
-  ✓ context/current-priorities.md — tu foco
-  ✓ context/goals.md — tu objetivo 12 meses
-  ✓ Sinapsis configurado
-  ✓ Cognito en modo <guiado|completo>
+  ✓ Tu identidad y dónde estás
+  ✓ Tu negocio principal y a quién sirves
+  ✓ Tu stack diario
+  ✓ Tu foco este mes y tu meta a 12 meses
 
-Última cosa: voy a generarte tu PRIMER ENTREGABLE para que veas el
-sistema funcionando. Tarda ~5 min y te queda un HTML compartible.
+Voy a generarte tu primer entregable real ahora. ~5 min. Te queda
+un HTML compartible.
 
 ¿Vamos?
 ```
 
 Si "sí": invoca skill `welcome-quick-win`.
-Si "no" o "después": cierra wizard, marca `welcomeCompleted: false` (se disparará automáticamente la siguiente sesión).
+Si "no" o "después": cierra el wizard, marca `welcomeCompleted: false` (se disparará en la siguiente sesión).
 
-### Paso 11 · Cierre y aprendizaje
+### Paso 6 · Anuncio de la deep-dive
 
-- Append en `~/.claude/skills/_daily-summaries/<TODAY>.md`:
-  ```
-  ## Sesión 1 · Onboarding completado
-  - Operador: <nombre>, ubicación: <ubicación>
-  - Avatar inferido: <calculado de respuestas>
-  - Foco actual: <prioridad 1>
-  - Cognito mode: <guiado|completo>
-  - Welcome quick-win: <completado|pendiente>
-  ```
-- NO appends en `context/learnings.md` para esta primera sesión (queda limpio para skills reales)
+Tras `welcome-quick-win` (o si el usuario dijo "después"), mensaje de cierre:
 
-## Outputs
+```
+Última cosa antes de cerrar.
 
-- `~/.claude/skills/_operator-state.json` — actualizado con perfil completo
-- `context/me.md`, `work.md`, `team.md`, `current-priorities.md`, `goals.md` — sectorizados
-- `context/decisions-log.md`, `learnings.md`, `soul.md` — inicializados con header
-- `projects/welcome/` — directorio creado
-- `.env` — Firecrawl API key si se proporcionó
-- `.claude/settings.json` — ajustes de permisos según nivel técnico
-- `~/.claude/skills/_daily-summaries/<TODAY>.md` — entrada inicial
+Lo de hoy ha sido el mínimo. El sistema ya funciona, pero te
+conoce todavía superficialmente. Si quieres que los outputs salgan
+realmente en tu voz y con tu criterio, hay una skill que se llama
+`meta-deep-dive` que profundiza otras 20-25 áreas: tus ritmos, tu
+modelo financiero, tu equipo, tus miedos, tu definición de éxito.
 
-## Skills que llama
+Tarda ~25 minutos. Lo recomiendo para mañana o pasado, no hoy
+(estás cansado y eso se nota en las respuestas).
 
-- **`welcome-quick-win`** — al final del onboarding para generar primer entregable (Paso 10)
+Cuando quieras, ejecuta:  /deep-dive
+
+Te aviso desde `/start-here` cada vez que abras Claude, hasta que
+la completes.
+
+Suerte. Nos vemos mañana.
+```
+
+### Paso 7 · Cierre técnico
+
+- Append en `~/.claude/skills/_daily-summaries/<TODAY>.md` resumen de la sesión inicial
+- NO appends en `context/learnings.md` (queda limpio para skills reales)
+- Operator-state queda con `needsOnboarding: false` + `deepDiveCompleted: false`
 
 ## Edge cases
 
-- **Usuario abandona a mitad**: guardar progreso parcial en operator-state con `onboardingProgress: <bloque>` (A-H). Al volver, retomar desde el bloque siguiente al último completado.
-- **Usuario dice "no tengo equipo, no tengo ICP, no tengo objetivo claro"**: aceptar "todavía no" sin presionar. Llenar archivos con "(por definir)" y propón skills concretas para definirlos después (`marketing-icp`, `strategy-trending-research`, etc.)
-- **Usuario es solo curioso, sin negocio**: marcar `avatar: "curioso"` en operator-state y saltar Bloque B → "OK, sin negocio activo. Cuando lo tengas, vuelve a ejecutar este wizard."
-- **Respuestas contradictorias**: pedir clarificación corta (1 pregunta), no debate. Ej: nivel cero pero dominio = desarrollo → "¿seguro? Para empezar te sugiero plan-mode activado, lo desactivamos cuando estés cómodo. ¿OK?"
-- **Firecrawl no proporcionada y no quiere obtenerla**: marca `firecrawlAvailable: false` y degrada gracefully (welcome-quick-win pedirá párrafo manual).
+- **Usuario abandona a mitad** (responde "para", "cierra", "no quiero seguir"): guarda progreso parcial en `operator-state.onboardingProgress: <dimensión última completada>`. Al volver, retoma desde donde se quedó.
+- **Usuario es curioso sin negocio activo**: marca `avatar: "curioso"`, salta dimensiones 3-6, captura solo identidad + ubicación + objetivo (lo que tenga). Anota "Sin negocio activo todavía. Cuando lo tengas, reejecuta el wizard."
+- **Usuario contesta todo en 1 párrafo gigante**: extrae las 8 dimensiones de ese párrafo. NO le pidas que lo desglose. Solo profundiza dimensiones que quedaron débiles.
+- **Usuario nivel técnico = cero y se siente perdido**: simplifica lenguaje. Ofrece ejemplos concretos antes de cada pregunta nueva. Usa más "espejo corto" como técnica.
+- **Firecrawl no proporcionada**: marca `firecrawlAvailable: false`. `welcome-quick-win` pedirá contenido manual con fallback graceful.
 
-## Examples
+## Outputs (al cerrar correctamente)
 
-```
-Operador: (clone fresh + abre Claude Code)
-Wizard: "👋 Bienvenido a iAmasters OS. Voy a hacerte una entrevista..."
-Operador: "vamos"
+- `~/.claude/skills/_operator-state.json` actualizado
+- `context/me.md`, `work.md`, `current-priorities.md`, `goals.md` rellenados
+- `context/team.md`, `decisions-log.md`, `learnings.md`, `soul.md` inicializados con header
+- `projects/welcome/` directorio creado
+- `.env` con Firecrawl API key si se proporcionó
+- `.claude/settings.json` ajustado según nivel técnico
+- `~/.claude/skills/_daily-summaries/<TODAY>.md` con entrada inicial
 
-[Bloque A]
-Wizard: "¿Cómo te llamas?"
-Operador: "Marta"
-Wizard: "¿Dónde vives?"
-Operador: "Madrid"
-Wizard: "¿Cómo te describes profesionalmente en 1 frase?"
-Operador: "Diseñadora UX freelance especializada en SaaS B2B"
-Wizard: ✓ context/me.md creado.
+## Skills que llama
 
-[Bloque B]
-Wizard: "¿Cuál es tu negocio principal?"
-Operador: "Estudio de diseño UX, trabajo sola con 4-5 clientes simultáneos"
-... [continúa]
+- **`welcome-quick-win`** — en el Paso 5, para generar primer entregable
 
-[Bloque H, final]
-Wizard: "🎉 Setup completo. He creado tu contexto:..."
-Operador: "vamos"
-Wizard: → invoca welcome-quick-win
-```
+## Skills que recomienda al cerrar
+
+- **`meta-deep-dive`** — para profundizar las 22 dimensiones restantes (anunciada en Paso 6)

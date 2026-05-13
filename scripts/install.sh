@@ -31,7 +31,7 @@ CLAUDE_HOME="$HOME/.claude"
 
 echo ""
 echo "============================================================"
-echo "  iAmasters OS — Installer v0.5.0"
+echo "  iAmasters OS — Installer v0.5.1"
 echo "  Repo: $REPO_ROOT"
 echo "============================================================"
 echo ""

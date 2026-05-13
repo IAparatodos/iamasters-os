@@ -89,8 +89,8 @@ Lo que aporta este repo encima de Sinapsis:
 - `user.md` — el operador en contexto del repo (preferencias visuales en docs, ejemplos del día a día)
 - `learnings.md` — feedback consolidado de skills
 
-**Skills curadas (`.claude/skills/`)** — 22 skills core por categoría:
-- `_meta/` — sistema (skill-creator, onboarding-wizard, start-here, wrap-up, welcome-quick-win, six-hats, decisions-log, health-check, find-skills)
+**Skills curadas (`.claude/skills/`)** — 23 skills core por categoría:
+- `_meta/` — sistema (skill-creator, onboarding-wizard, **deep-dive**, start-here, wrap-up, welcome-quick-win, six-hats, decisions-log, health-check, find-skills)
 - `_meta/_optional/` — cognito (activable on-demand)
 - `marketing/` — brand-voice, positioning, icp, copywriting, content-repurposing, email-sequence
 - `automation/` — n8n-to-claude, n8n-builder
@@ -113,16 +113,17 @@ Skills oficiales Anthropic (`docx`, `xlsx`, `pdf`, `pptx`): NO se vendorean (lic
 
 ## Skills registry (auto-mantenido)
 
-Lista canónica de skills instaladas en este repo (Capa 1, v0.5.0 = 22 skills core + 1 opcional):
+Lista canónica de skills instaladas en este repo (Capa 1, v0.5.0 = 23 skills core + 1 opcional):
 
 <!-- skills-registry-start -->
 
-### `_meta/` — sistema (9)
+### `_meta/` — sistema (10)
 
 | Skill | Descripción corta |
 |---|---|
 | `meta-skill-creator` | Crea skills nuevas siguiendo el patrón canónico |
-| `meta-onboarding-wizard` | Entrevista por bloques, sectoriza context/, lanza welcome al cerrar |
+| `meta-onboarding-wizard` | Entrevista express conversacional adaptativa (8 dimensiones críticas) tras instalar |
+| `meta-deep-dive` | Entrevista profunda (22-25 dimensiones) conversacional adaptativa — segunda fase del onboarding |
 | `meta-start-here` | Ritual diario de inicio |
 | `meta-wrap-up` | Ritual diario de cierre |
 | `welcome-quick-win` | Primera tarea garantizada en 5 min — el "primer wow" |
@@ -183,7 +184,7 @@ Lista canónica de skills instaladas en este repo (Capa 1, v0.5.0 = 22 skills co
 
 ### Slash commands
 
-`/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende`
+`/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende` · `/deep-dive`
 
 ### Capa 2 — on-demand library
 

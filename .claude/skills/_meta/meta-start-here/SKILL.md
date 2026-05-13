@@ -19,7 +19,8 @@ Lee en orden:
 
 1. `~/.claude/skills/_operator-state.json`
    - ¿Existe? ¿`needsOnboarding: true`? → derivar a `meta-onboarding-wizard`
-2. `context/user.md`
+   - ¿`deepDiveCompleted: false` y han pasado >12h desde `onboardingDate`? → marcar flag interno `suggestDeepDive: true` (no derivar — solo recordar en el saludo, ver Paso 4)
+2. `context/me.md` (o `context/user.md` legacy)
    - ¿Está vacío o sin rellenar? → derivar a `meta-onboarding-wizard`
 3. `brand-context/voice/voice-profile.md`
    - ¿No existe o vacío? → sugerir ejecutar `marketing-brand-voice`
@@ -67,6 +68,20 @@ Construir saludo según contexto detectado:
 > [3] Análisis estratégico (skills strategy-*)
 > [4] Tarea libre — dime qué necesitas"
 
+### Paso 4.5 · Recordatorio de deep-dive (si aplica)
+
+Si en Paso 1 quedó `suggestDeepDive: true`, añade al final del saludo (no antes — el saludo principal va primero):
+
+```
+PD: aún no has completado el deep-dive del onboarding. El sistema te
+conoce superficialmente. Cuando tengas 25 minutos, ejecuta `/deep-dive`
+y refinamos.
+```
+
+Este recordatorio se muestra **cada vez** que el operador arranca, hasta que `deepDiveCompleted: true`. No es intrusivo (solo 1 línea), pero recuerda.
+
+Si el operador ya completó la deep-dive (`deepDiveCompleted: true`), no menciones nada.
+
 ### Paso 5 · Si hay pending tasks de Sinapsis
 
 Sinapsis puede tener instincts en draft pendientes de promote. Si en `~/.claude/skills/_instincts-index.json` hay 5+ drafts con `occurrences >= 3`:
@@ -87,6 +102,10 @@ Importante: este ritual NO ejecuta tareas. Solo carga contexto y propone.
 
 - **`meta-onboarding-wizard`** — si detecta primer arranque
 - **`marketing-brand-voice`** — opcionalmente si falta voice profile
+
+## Skills que sugiere (sin invocar automáticamente)
+
+- **`meta-deep-dive`** — si el operador completó el wizard inicial pero no la deep-dive (mostrado como PD al final del saludo, recordatorio diario hasta que se complete)
 
 ## Edge cases
 
