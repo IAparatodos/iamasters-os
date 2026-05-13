@@ -604,16 +604,16 @@ footer a { color: var(--accent); }
 <section id="contexto">
 <h2>1. Contexto: por qué se construyó</h2>
 
-<p class="lead">Durante el análisis competitivo de <strong>Agentic Academy (Scrapes / Juanpe Navarro)</strong>, detectamos un gap: ellos distribuyen un sistema operativo agéntico empaquetado llamado "Agentic OS" — un repo Claude Code listo para clonar e instalar, con skills curadas, brand context, multi-cliente y memoria que aprende.</p>
+<p class="lead">Tras analizar las opciones del mercado anglosajón, detectamos un gap: existen sistemas operativos agénticos empaquetados — repos Claude Code listos para clonar e instalar, con skills curadas, brand context, multi-cliente y memoria que aprende — pero ninguno en castellano.</p>
 
-<p>iAmasters NO tiene equivalente. <strong>Synapsis</strong> (el sistema de memoria de Luis Pitik) cubre la capa de aprendizaje, pero no la arquitectura completa: faltan brand context compartido, multi-cliente, skills curadas con colaboración, niveles de proyecto formalizados, etc.</p>
+<p>iAmasters NO tenía equivalente propio. <strong>Synapsis</strong> (el sistema de memoria de Luis Pitik) cubre la capa de aprendizaje, pero no la arquitectura completa: faltan brand context compartido, multi-cliente, skills curadas con colaboración, niveles de proyecto formalizados, etc.</p>
 
 <div class="highlight-box">
   <h4 style="margin-top:0">Decisión estratégica de Angel</h4>
-  <p>Construir <strong>iAmasters OS</strong> como respuesta a Scrapes, pero con tres ventajas claras:</p>
+  <p>Construir <strong>iAmasters OS</strong> con tres ventajas claras frente al resto del mercado:</p>
   <ul>
-    <li>En <strong>castellano</strong> (Scrapes solo inglés)</li>
-    <li>Con <strong>Synapsis embebido</strong> (su <code>learnings.md</code> es muy básico al lado)</li>
+    <li>En <strong>castellano</strong> (el resto solo inglés)</li>
+    <li>Con <strong>Synapsis embebido</strong> como engine de memoria</li>
     <li>Como <strong>repo público y neutro</strong> — sin info privada de Angel ni de la academia. Cualquier operador IA puede clonarlo, instalarlo y usarlo</li>
   </ul>
   <p style="margin-top:12px">Resultado: en una sola sesión se construyeron las versiones v0.1.0 → v0.4.0, con esqueleto + 12 skills + 4 templates verticales + scripts de gestión + docs operativos completos.</p>
@@ -1467,8 +1467,8 @@ exit</code></pre>
 
 <details>
 <summary>Sinapsis embedded como engine, no como capa secundaria</summary>
-<p>Los competidores (Agentic OS de Scrapes) tienen un <code>learnings.md</code> plano por skill. Eso es un primer paso muy básico. Synapsis ya está varios niveles por encima: instincts con confidence score, evolución a skills/reglas, projects registry estructurado, dream cycle de hygiene, dashboard.</p>
-<p><strong>Decisión</strong>: trasplantamos Sinapsis íntegro como engine principal, no como capa secundaria. Eso es nuestra mayor ventaja competitiva sobre Scrapes.</p>
+<p>Los competidores del mercado anglosajón tienen un <code>learnings.md</code> plano por skill. Eso es un primer paso muy básico. Synapsis ya está varios niveles por encima: instincts con confidence score, evolución a skills/reglas, projects registry estructurado, dream cycle de hygiene, dashboard.</p>
+<p><strong>Decisión</strong>: trasplantamos Sinapsis íntegro como engine principal, no como capa secundaria. Eso es nuestra mayor ventaja competitiva.</p>
 </details>
 
 <details>
@@ -1487,7 +1487,7 @@ exit</code></pre>
 
 <details>
 <summary>3 registros de voice (A/B/C) en lugar de 1 voice profile genérico</summary>
-<p>Scrapes tiene 1 voice profile. Pero la realidad operativa es que escribimos muy distinto en email premium vs LinkedIn vs WhatsApp. Si el OS no lo modela, todos los outputs salen homogéneos.</p>
+<p>El estándar habitual es 1 voice profile genérico. Pero la realidad operativa es que escribimos muy distinto en email premium vs LinkedIn vs WhatsApp. Si el OS no lo modela, todos los outputs salen homogéneos.</p>
 <ul>
   <li><strong>A formal</strong>: email cliente premium, propuesta comercial, contrato</li>
   <li><strong>B divulgativo</strong>: LinkedIn post, blog, video script, newsletter (95% del contenido público)</li>
@@ -1580,7 +1580,7 @@ exit</code></pre>
 
 <h3>Ideas en backlog (sin versión asignada)</h3>
 <ul>
-  <li>UI Command Center web (estilo Agentic OS de Scrapes pero opcional)</li>
+  <li>UI Command Center web (opcional, encima del repo)</li>
   <li>Skill Vault retención (skills licencia-locked) — solo si se hace producto comercial separado</li>
   <li>Telemetry opt-in (analytics anonimizado de uso) — pendiente de evaluación legal/privacidad</li>
   <li>Integraciones específicas: Skool, Telegram, Dispatch — solo si tienen demanda comunidad</li>

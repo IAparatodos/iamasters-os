@@ -247,7 +247,6 @@ iAmasters OS es código abierto bajo MIT. Las contribuciones bienvenidas:
 - **Patrón decisions-log**: inspirado en [`Luispitik/claude-code-second-brain`](https://github.com/Luispitik/claude-code-second-brain)
 - **cognito skill**: original de Luis Pitik, copiada con autorización
 - **find-skills, visual-explainer**: de la suite Anthropic skills + comunidad
-- **Inspiración Agentic OS**: arquitectura Brand Context + Agent Context + Skills curadas viene del análisis del Agentic Academy de Juanpe Navarro
 - **Brand Voice patterns A/B/C**: inspirado en el Brand Voice Manual de Fernando Montero
 - **6 sombreros**: método de Edward de Bono, dominio público
 

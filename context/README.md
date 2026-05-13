@@ -1,6 +1,6 @@
 # Context
 
-Capa dinámica que evoluciona con el uso del OS. Es el "agent context" del Agentic OS adaptado.
+Capa dinámica que evoluciona con el uso del OS. Aquí vive todo lo que cambia con el tiempo: identidad del operador, decisiones tomadas, lecciones aprendidas.
 
 ## Archivos
 

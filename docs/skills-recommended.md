@@ -2,7 +2,7 @@
 
 Las **18 skills core** que vienen preinstaladas con iAmasters OS están en el README. Este documento lista las **skills opcionales** que puedes añadir cuando las necesites con `/install-skill <github-url>`.
 
-> **Filosofía**: la regla "max 30 skills, no 1000" del Agentic Academy aplica. Inflar el catálogo paraliza al miembro nuevo. Esta lista es **curada y opinada** — solo skills validadas en producción ≥2 semanas. No es exhaustiva ni inclusiva.
+> **Filosofía**: max 30 skills, no 1000. Inflar el catálogo paraliza al miembro nuevo. Esta lista es **curada y opinada** — solo skills validadas en producción ≥2 semanas. No es exhaustiva ni inclusiva.
 
 > Última revisión: 2026-05-08 (v0.4.3)
 
