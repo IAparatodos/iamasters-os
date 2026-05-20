@@ -9,9 +9,48 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Próximas versiones (en backlog)
-- v0.8.0: skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) reescritas con voice profile del operador
+- v0.8.1: skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) reescritas con voice profile del operador
 - v0.9.0: dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
 - v1.0.0: release pública estable + vídeos Loom integrados + landing en iamastersacademy.com/os
+
+---
+
+## v0.8.0 — Skill opt-in `arnes` (2026-05-20)
+
+> **Por qué esta release**: incorporar al catálogo una skill nativa creada en la comunidad de IA Masters Academy para arrancar proyectos software. Sigue el modelo de "sistema vivo" del OS: una skill validada en producción (139/139 tests, 5/5 sub-agentes Haiku en paralelo en E2E, 3 rondas de review con Fernando Montero) que ahora cualquier miembro puede activar con un comando. Se integra como **opt-in** (no se instala por defecto) siguiendo el mismo patrón que `cognito`: vendoreada intacta en `vendor/arnes/` y activable con `/install-skill arnes`.
+
+### Added — skill nueva (opt-in)
+
+- **`_meta/_optional/arnes`** (nueva, opt-in) — skill para vibe-coders no técnicos que ayuda a arrancar proyectos software por niveles: **Express** (5 min, web simple sin login), **Estándar** (20-30 min, app con login y datos), **PRO** (1-2 h, software profesional con SDD+TDD completo y revisión adversarial). Más dos modos para proyectos existentes: **Adoptar** (mete armazón sin tocar el código del usuario) y **Mantener** (actualiza armazón cuando la skill evoluciona). Pregunta SIEMPRE qué nivel quieres antes de avanzar — nunca decide por el usuario. Mantenida en repo separado [`iamasters-academy/arnes`](https://github.com/iamasters-academy/arnes) (público, MIT).
+
+- **`vendor/arnes/`** — copia intacta del repo arnes v0.2.4 (incluye SKILL.md, README, CHANGELOG, CITATION, LICENSE MIT, CODEOWNERS, docs/, modos/, plantillas/, scripts/, tutorial/, estado/). 452K.
+
+### Concepto original y créditos
+
+`arnes` adapta el concepto **fs-scaffold** de **Fernando Montero** (Fersora Solutions SL), presentado en el Café Camaleónico del 18 de mayo de 2026 en la comunidad iAmasters Academy. La adaptación para vibe-coders no técnicos mantiene el rigor donde importa (Modo PRO) pero ofrece niveles más ligeros (Express, Estándar) para el 80% de casos donde no hace falta tanto ceremonial.
+
+Fernando aparece como contributor en `CITATION.cff` por la integración de arnes en este OS, y arnes se referencia explícitamente como software vendored.
+
+### Changed
+
+- **`README.md`** — badge versión actualizado a v0.8.0. Nueva entrada `arnes` en sección "Skills incluidas → `_meta/_optional/`". Entrada en Roadmap. Entrada en Créditos con atribución a Fernando.
+- **`CLAUDE.md`** — Skills registry actualizado a v0.8.0. Sección `_meta/_optional/ (2)`, fila nueva para arnes. Mención de `vendor/arnes/` en la sección "Vendored".
+- **`CITATION.cff`** — bump versión `0.7.1` → `0.8.0`. Fernando Montero añadido como `contributors`. arnes añadida en `references` como software vendored.
+- **`scripts/_install-state.template.json`** — version bump `0.7.1` → `0.8.0`.
+
+### Cómo activar
+
+Desde Claude Code en este repo:
+
+```
+/install-skill arnes
+```
+
+Reinicia Claude Code tras la activación. Triggea con frases como «crea una app», «monta una landing», «nuevo proyecto».
+
+### No breaking changes
+
+Ninguna skill existente, configuración o flujo se modifica. La instalación de iAmasters OS sigue exactamente igual: arnes solo aparece si el usuario decide activarla explícitamente. `scripts/install.sh` no la copia automáticamente (mismo criterio que con cognito desde v0.4.3).
 
 ---
 
