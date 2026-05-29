@@ -1,0 +1,21 @@
+{
+  "_comment": "Plantilla del MCP del proyecto. Copia este archivo a .mcp.json y rellena tus credenciales reales. .mcp.json está en .gitignore — nunca se commitea (contiene secretos). Usa valores LITERALES, no ${VAR}: la expansión ${VAR} depende del entorno con que se lanzó Claude Code y es frágil.",
+  "mcpServers": {
+    "n8n": {
+      "command": "npx",
+      "args": ["-y", "n8n-mcp"],
+      "env": {
+        "MCP_MODE": "stdio",
+        "LOG_LEVEL": "error",
+        "DISABLE_CONSOLE_OUTPUT": "true",
+        "N8N_API_URL": "https://tu-instancia-n8n.example.com",
+        "N8N_API_KEY": "REEMPLAZA-CON-TU-API-KEY-JWT-DE-N8N"
+      }
+    },
+    "metricool": {
+      "_comment": "MCP oficial de Metricool — gestión multi-red social (IG, TikTok, LinkedIn, X, YouTube, etc.) + analytics + ads. Plan gratuito sirve. La primera vez te pedirá autenticación con tu cuenta Metricool.",
+      "type": "http",
+      "url": "https://ai.metricool.com/mcp"
+    }
+  }
+}

@@ -4,6 +4,9 @@
 .env.*.local
 !.env.example
 
+# MCP — config local con secretos (n8n API key). Template versionado: .mcp.json.example
+.mcp.json
+
 # OS
 .DS_Store
 Thumbs.db
