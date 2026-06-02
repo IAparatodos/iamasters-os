@@ -8,10 +8,38 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Próximas versiones (en backlog)
-- v0.8.0: skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) reescritas con voice profile del operador
-- v0.9.0: dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
-- v1.0.0: release pública estable + vídeos Loom integrados + landing en iamastersacademy.com/os
+### En curso — Memory Upgrade (Store / Inject / Recall · benchmark vs Agentic OS Phase 2)
+- **v0.8.1 · P1 recall semántico** — pgvector sobre Supabase self-hosted + embeddings locales (CPU, coste cero) + búsqueda híbrida (vector + full-text español) + skill `/recuerda` con respuestas citadas y "no lo tengo" sin inventar. Ejecución planificada vía Codex (`/gpt`), review del maintainer.
+- **v0.8.2 · P2 captura de contenido** — resumen legible por sesión que engorda el corpus indexado por P1.
+- **v0.9.0 · P4 Team OS** — memoria/permisos compartidos para equipo (3-tier Notion+Supabase+GitHub, RLS por persona/cliente). Decisión de negocio pendiente.
+
+### Backlog
+- skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) con voice profile del operador
+- dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
+- v1.0.0: release pública estable + vídeos Loom + landing en iamastersacademy.com/os
+
+---
+
+## v0.8.0 — Memory Upgrade · Fase A: working memory + memo manual (2026-06-02)
+
+> **Por qué esta release**: benchmark del OS contra Agentic OS (Scrapes) Phase 2, que organiza la memoria en tres ejes — Store / Inject / Recall. El análisis confirmó que iAmasters OS ya gana en Store e Inject (captura turno a turno vía Sinapsis + instincts con confidence decay) y tiene un motor de aprendizaje que ellos no tienen, pero que el **recall semántico** es el hueco real. Esta Fase A cierra primero la pieza más barata y de mayor uso diario: una memoria de trabajo curada que se inyecta al inicio y se mantiene en el cierre, más un memo manual en lenguaje natural. P1 (recall semántico), P2 (captura) y P4 (Team OS) van en releases siguientes.
+
+### Added
+
+- **`context/working-memory.md`** — scratchpad de trabajo curado con tres secciones (Hilos activos / Notas de entorno / Decisiones pendientes), tope ~2.500 caracteres y máx. 5 ítems por sección. Es la memoria "de trabajo" del OS: lo que el agente tiene presente sin buscar nada. Privado (gitignored); se bootstrappea en `meta-start-here` si no existe.
+- **Memo manual** — comportamiento documentado en `CLAUDE.md`: cuando el operador dice "recuerda esto" / "apunta que" / "nota que" / "para la próxima", el agente escribe el ítem en la sección correcta del working-memory con dedup y respeto del tope. Visible de inmediato en la sesión; se carga al inicio en las siguientes.
+
+### Changed
+
+- **`meta-start-here`** (Paso 2) — ahora carga `context/working-memory.md` lo primero como foto del estado actual (y lo crea si falta).
+- **`meta-wrap-up`** (nuevo Paso 5.5) — mantiene el working-memory al cierre: quita hilos cerrados, mueve decisiones tomadas a `decisions-log.md`, respeta el tope.
+- **`CLAUDE.md`** — `working-memory.md` añadido a la carga obligatoria de inicio, a la lista de paths de `context/` y a la capa Agent Context; nueva nota de memo manual; header de skills registry a v0.8.0.
+- **`context/README.md`** — documentado `working-memory.md`.
+- **`.gitignore`** — `context/working-memory.md` marcado como dato privado del operador.
+
+### Meta
+
+- Análisis comparativo completo iAmasters OS vs Agentic OS (Store/Inject/Recall, orquestación, multi-cliente, Team OS, UI) — 2026-06-02. Conclusión rectora: no copiar su Command Centre ni sus skill systems de contenido (ya cubiertos por skills propias); sí cerrar el recall semántico y evaluar Team OS dado el equipo creciente.
 
 ---
 

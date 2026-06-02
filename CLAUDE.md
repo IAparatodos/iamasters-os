@@ -47,7 +47,7 @@ Antes de responder al primer mensaje del usuario en este repo, **debes** comprob
 - **Skills del OS**: `.claude/skills/`
 - **Commands del OS**: `.claude/commands/`
 - **Brand context**: `brand-context/` (voice, positioning, ICP, assets)
-- **Agent context sectorizado**: `context/` (me.md, work.md, team.md, current-priorities.md, goals.md, decisions-log.md, learnings.md, soul.md)
+- **Agent context sectorizado**: `context/` (working-memory.md, me.md, work.md, team.md, current-priorities.md, goals.md, decisions-log.md, learnings.md, soul.md)
 - **Proyectos**: `projects/` (`projects/briefs/<nombre>/`, `projects/welcome/`, `projects/seis-sombreros/`, `projects/metodo-ias/`, `projects/visual/`)
 - **Clientes**: `clients/<nombre>/` (con `clients/_templates/` para nuevos)
 - **Docs operativos**: `docs/`
@@ -68,10 +68,11 @@ Antes de responder al primer mensaje del usuario en este repo, **debes** comprob
 Una vez confirmado que la instalación está completa, antes de responder al primer mensaje del usuario:
 
 1. Lee `~/.claude/skills/_operator-state.json` (Sinapsis: perfil del operador, decisiones, lecciones).
-2. Lee los 5 archivos sectorizados de `context/` si existen: `me.md`, `work.md`, `team.md`, `current-priorities.md`, `goals.md`.
-3. Lee `context/decisions-log.md` (últimas 5 entradas) para mantener coherencia.
-4. Lee cualquier plan activo en `.claude/plans/` si la carpeta existe (planes en progreso de sesiones anteriores).
-5. Lee `synapsis/daily-summaries/<TODAY>.md` o `<YESTERDAY>.md` (continuidad diaria).
+2. Lee `context/working-memory.md` — **scratchpad de trabajo** (hilos activos / notas de entorno / decisiones pendientes). Es lo primero que te pone al día sobre el estado actual, sin buscar nada.
+3. Lee los 5 archivos sectorizados de `context/` si existen: `me.md`, `work.md`, `team.md`, `current-priorities.md`, `goals.md`.
+4. Lee `context/decisions-log.md` (últimas 5 entradas) para mantener coherencia.
+5. Lee cualquier plan activo en `.claude/plans/` si la carpeta existe (planes en progreso de sesiones anteriores).
+6. Lee `synapsis/daily-summaries/<TODAY>.md` o `<YESTERDAY>.md` (continuidad diaria).
 
 ### Session continuity (operativa diaria)
 
@@ -107,9 +108,12 @@ Lo que aporta este repo encima de Sinapsis:
 - Positioning, ICP, brand assets
 
 **Agent Context (`context/`)** — dinámica:
+- `working-memory.md` — **scratchpad de trabajo** (hilos activos / notas de entorno / decisiones pendientes). Se inyecta al inicio y se mantiene al cierre. Tope ~2.500 car.
 - `soul.md` — personalidad del agente (cómo respondes)
 - `me.md`, `work.md`, `team.md`, `current-priorities.md`, `goals.md`
 - `learnings.md`, `decisions-log.md`
+
+**Memoria de trabajo (memo manual)**: cuando el operador diga *"recuerda esto"*, *"apunta que"*, *"nota que"* o *"para la próxima"*, escribe el ítem en la sección que corresponda de `context/working-memory.md` (Hilos activos / Notas de entorno / Decisiones pendientes), con dedup y respetando el tope. Visible de inmediato en esta sesión; en sesiones futuras se carga al inicio.
 
 **Skills curadas (`.claude/skills/`)** — 25 skills core (ver registry abajo).
 
@@ -124,7 +128,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 ---
 
-## Skills registry (v0.7.0)
+## Skills registry (v0.8.0)
 
 Capa 1 = 25 skills core + 1 opcional.
 
