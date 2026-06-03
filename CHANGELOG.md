@@ -9,8 +9,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### En curso — Memory Upgrade (Store / Inject / Recall · benchmark vs Agentic OS Phase 2)
-- **cron auto-sync** del índice de memoria (nightly, incremental) — pendiente de conectar (Opus).
-- **v0.8.2 · P2 captura de contenido** — resumen legible por sesión que engorda el corpus indexado por P1.
+- **v0.8.2 · P2 captura de contenido** (opcional) — resumen legible por sesión que engorda el corpus. Bajo valor incremental: ya hay daily summaries indexados; pendiente de decidir si aporta.
 - **v0.9.0 · P4 Team OS** — memoria/permisos compartidos para equipo. Módulo AVANZADO opcional (no core), decisión de negocio pendiente.
 
 ### Backlog
@@ -28,6 +27,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Recall de memoria local** (`scripts/memory-index/`): índice SQLite + FTS5 sobre el corpus markdown del operador. `ingest.py` (chunking por encabezados, scrub de secretos, incremental por SHA1, ranking BM25), `schema.sql` (FTS5 external-content + triggers de sync), `corpus.yaml`. Capa semántica **opt-in** en `semantic.py` (`sqlite-vec` + `multilingual-e5-small`) tras `--semantic`. 100% local, sin API keys, sin connection strings.
 - **Skill `/recuerda`** (`_meta/recuerda`) — recall con Tier 0 (contexto cargado) → FTS5; responde **con fuente citada** o **"no lo tengo registrado"** sin inventar (coherente con la regla no-inventar-datos).
 - **CodeGraph** documentado en `docs/mcps-curated.md` como MCP **add-on opcional** (grafo de código local, 100% local, MIT) para usuarios que programan. Validado en un repo real antes de recomendarlo.
+- **Auto-sync** vía hook SessionStart: refresca el índice (ingest incremental, best-effort, no bloqueante) al abrir el repo, sin cron del sistema. Además, `/recuerda` re-indexa en cada consulta.
 
 ### Changed
 - `CLAUDE.md` registry: +`recuerda` en `_meta`, +`/recuerda` en slash commands, conteo a 26 skills core.

@@ -5,6 +5,7 @@ Indice local-first para recall de iAmasters OS.
 - Base default: SQLite + FTS5 en `context/.memory-index/memory.db`.
 - Sin servicios externos, cuentas, credenciales de BD ni descargas de modelos.
 - Semantica opt-in: `sqlite-vec` + `intfloat/multilingual-e5-small` via `fastembed`.
+- Auto-sync: un hook SessionStart re-indexa (incremental, best-effort) al abrir el repo; ademas `--query` re-indexa en cada consulta. No hace falta correr el ingest a mano.
 
 ## Instalar base
 
