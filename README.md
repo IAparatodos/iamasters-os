@@ -245,6 +245,8 @@ Ver [`CHANGELOG.md`](CHANGELOG.md) para historial detallado.
 - **v0.6.0** ✅ **Install gate** con state machine persistente, validación profunda anti-"instalación fantasma", hook SessionStart, onboarding por sub-fases con commits incrementales, comandos `/install` y `/install-status`, detección Python multi-plataforma
 - **v0.7.0** ✅ Skills nativas en español: `seis-sombreros` (renombre + reescritura completa con anti-ancla y 7 variantes), `metodo-ias` (método I.A.S. propio para sesiones agénticas), `tool-zoom-summary` (resumen HTML interactivo de reuniones Zoom)
 - **v0.8.0** ✅ Skill opt-in `arnes` — arrancar proyectos software por niveles (Express 5 min / Estándar 20-30 min / PRO 1-2 h) para vibe-coders no técnicos. Concepto fs-scaffold de Fernando Montero, adaptación de Angel Aparicio. Vendoreada en `vendor/arnes/`, activable con `/install-skill arnes`. Repo upstream: [iamasters-academy/arnes](https://github.com/iamasters-academy/arnes)
+- **v0.8.1** ✅ Memory Upgrade · Fase A — memoria de trabajo (`context/working-memory.md`) inyectada al inicio + memo manual ("recuerda esto")
+- **v0.8.2** ✅ Memory Upgrade · P1 — recall local `/recuerda` (SQLite + FTS5, cero servicios externos) con fuente citada; CodeGraph documentado como add-on opcional; auto-sync del índice
 - **v1.0.0** — release pública estable + vídeos Loom integrados + landing en iamastersacademy.com/os
 
 ## 🌱 Sistema vivo

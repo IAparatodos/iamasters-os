@@ -38,7 +38,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Validado (end-to-end, local)
 - Ingest: **108 archivos → 789 chunks en 0,15 s**, SQLite local 1,5 MB.
-- Las 3 preguntas de control (CPL de Miguel · archivado del Cockpit · pendientes plataforma miembros) devuelven la fuente correcta en top-5. La negativa (dato inexistente: cobro anual FIBA) no produce falsos positivos.
+- Validado con 3 preguntas de control sobre decisiones pasadas: devuelven la fuente correcta en top-5. Una pregunta sobre un dato que no existe en el corpus no produce falsos positivos (responde "no lo tengo registrado").
 
 ---
 

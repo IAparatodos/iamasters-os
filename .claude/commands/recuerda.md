@@ -7,6 +7,6 @@ description: Busca en tu memoria (decisiones, eventos, histórico) por keyword/s
 Invoca la skill `recuerda` (en `.claude/skills/_meta/recuerda/SKILL.md`).
 
 Uso: `/recuerda <pregunta>`
-Ejemplo: `/recuerda ¿qué decidimos sobre los CPL de Miguel?`
+Ejemplo: `/recuerda ¿qué decidimos sobre el precio del plan anual?`
 
 Carga e invoca la skill `recuerda` y sigue su proceso (Tier 0 → FTS5 → responder citando fuente o "no lo tengo").

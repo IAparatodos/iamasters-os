@@ -40,6 +40,8 @@ Hace un ingest incremental y devuelve los 5 chunks más relevantes con su fuente
 
 No ejecutar salvo que el usuario quiera activar busqueda semantica local y acepte instalar dependencias y descargar el modelo.
 
+> ⚠️ Experimental: hoy `--semantic` **indexa** los embeddings, pero la busqueda (`--query` y la skill `/recuerda`) usa solo FTS5. La fusion hibrida FTS5 + vector (RRF) esta pendiente de cablear.
+
 ```bash
 pip install sqlite-vec fastembed
 python ingest.py --semantic

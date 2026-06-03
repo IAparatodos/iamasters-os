@@ -146,7 +146,7 @@ Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 | `decisions-log` | Diario append-only de decisiones |
 | `health-check` | Diagnóstico del OS con **validación profunda y detección de drift** (v0.6) |
 | `find-skills` | Descoverabilidad por intent |
-| `recuerda` | **Recall de memoria local** (SQLite+FTS5) con fuente citada — base para todos, semántico opt-in (v0.8.1) |
+| `recuerda` | **Recall de memoria local** (SQLite+FTS5) con fuente citada — base para todos, semántico opt-in (v0.8.2) |
 
 ### `_meta/_optional/` (2)
 
