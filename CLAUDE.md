@@ -1,7 +1,7 @@
 # iAmasters OS — CLAUDE.md (project root)
 
 > Sistema operativo agéntico para operadores de IA.
-> Sinapsis v4.5 (engine) + capa OS (brand context, agent context, skills curadas, multi-cliente).
+> Sinapsis v4.6.1 (engine) + capa OS (brand context, agent context, skills curadas, multi-cliente).
 
 ---
 
