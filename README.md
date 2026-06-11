@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://github.com/iamasters-academy/iamasters-os/releases"><img src="https://img.shields.io/badge/version-v0.8.2-orange.svg" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="vendor/sinapsis/"><img src="https://img.shields.io/badge/engine-Sinapsis%20v4.5-purple.svg" alt="Powered by Sinapsis"></a>
+  <a href="vendor/sinapsis/"><img src="https://img.shields.io/badge/engine-Sinapsis%20v4.6.1-purple.svg" alt="Powered by Sinapsis"></a>
   <a href="https://angelaparicio.com"><img src="https://img.shields.io/badge/maintained%20by-Angel%20Aparicio-ff8c42.svg" alt="Maintained by Angel Aparicio"></a>
   <a href="https://www.skool.com/ia-masters-automations"><img src="https://img.shields.io/badge/by-IA%20Masters%20Academy-b794f4.svg" alt="IA Masters Academy"></a>
 </p>
@@ -56,9 +56,9 @@ Y desde dentro de Claude Code: `/install-status` te muestra el dashboard sin toc
 
 **iAmasters OS** es un repositorio Claude Code que convierte una sesión vanilla en un sistema operativo profesional para operadores de IA. Tres capas:
 
-1. **Sinapsis v4.5 (engine)** — memoria persistente, instintos auto-aprendidos, skills on-demand. Vendoreado intacto del [repo de Luis Pitik](https://github.com/Luispitik/sinapsis).
+1. **Sinapsis v4.6.1 (engine)** — memoria persistente, instintos auto-aprendidos, skills on-demand. Vendoreado intacto del [repo de Luis Pitik](https://github.com/Luispitik/sinapsis).
 2. **Capa OS** — brand context (voice, positioning, ICP), agent context sectorizado (me, work, team, priorities, goals), proyectos estructurados, multi-cliente con templates por vertical.
-3. **Skills curadas** — 23 skills validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
+3. **Skills curadas** — 26 skills core + 2 opcionales (cognito, arnes) validadas para marketing, estrategia, automatización, tools, visualización y meta-pensamiento. Todas siguen patrón skill.md + references/ + scripts/. Skills oficiales de Anthropic (docx, xlsx, pdf, pptx) se instalan vía marketplace en el día 4 de `/aprende`.
 
 > 🌱 **Sistema vivo**: el catálogo crece con la comunidad. Cuando una skill nueva de IA Masters Academy demuestra valor en producción, entra al repo. Ver [`docs/skills-recommended.md`](docs/skills-recommended.md) para proponer una.
 
@@ -76,7 +76,7 @@ No requiere conocimientos de programación. Sí requiere paciencia para configur
 
 - ✅ Memoria que persiste entre sesiones (no más "explícame tu stack otra vez")
 - ✅ Tu primer entregable real generado por el sistema en los primeros 20 min (welcome-quick-win)
-- ✅ 23 skills curadas, instaladas, listas para activarse cuando hablas con Claude
+- ✅ 26 skills core + 2 opcionales (cognito, arnes), instaladas, listas para activarse cuando hablas con Claude
 - ✅ Brand context (voz, posicionamiento, ICP) generable en 30 minutos extra
 - ✅ Multi-cliente listo para escalar (4 templates de vertical incluidos)
 - ✅ Sistema de aprendizaje continuo: lo que repites se gradúa a regla
@@ -186,7 +186,7 @@ iamasters-os/
 ├── .claude/
 │   ├── settings.json           # Hooks Sinapsis + permisos seguros por defecto
 │   ├── commands/               # Slash commands del OS
-│   └── skills/                 # 22 skills curadas por categoría
+│   └── skills/                 # 26 skills core + 2 opcionales (cognito, arnes)
 │
 ├── brand-context/              # Tu marca: voice, positioning, ICP, assets
 ├── context/                    # Contexto sectorizado: me, work, team, priorities, goals
@@ -209,7 +209,7 @@ iamasters-os/
 ├── docs/                       # Guías de instalación, multi-cliente, skills curadas
 ├── scripts/                    # install, update, add-client, validate-skill
 └── vendor/
-    └── sinapsis/               # Sinapsis v4.5 vendored (engine de memoria)
+    └── sinapsis/               # Sinapsis v4.6.1 vendored (engine de memoria)
 ```
 
 ## Diferencial vs vanilla Claude Code
@@ -217,7 +217,7 @@ iamasters-os/
 | Sin OS | Con iAmasters OS |
 |---|---|
 | Cada sesión empieza explicando tu stack | Sinapsis recuerda y carga skills relevantes |
-| Skills sueltas sin curar | 18 skills validadas para tu avatar |
+| Skills sueltas sin curar | 26 skills core + 2 opcionales (cognito, arnes) validadas para tu avatar |
 | Brand voice cada vez que escribes | Voice profile permanente con 3 registros A/B/C |
 | Outputs sin gate de calidad | `tool-output-verifier` antes de entregar |
 | 1 cliente o se mezcla todo | Multi-cliente con templates por vertical |
@@ -315,4 +315,4 @@ Para uso de marca, contactar: aaparicio@iamastersacademy.com
 ## Licencia
 
 Código fuente bajo MIT — ver [LICENSE](LICENSE).
-Componente vendored Sinapsis v4.5 conserva su licencia "Source Available" original de Luis Pitik en [`vendor/sinapsis/LICENSE`](vendor/sinapsis/LICENSE).
+Componente vendored Sinapsis v4.6.1 conserva su licencia "Source Available" original de Luis Pitik en [`vendor/sinapsis/LICENSE`](vendor/sinapsis/LICENSE).

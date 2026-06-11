@@ -1,168 +1,195 @@
-# Email Sequence Templates
+# Plantillas de secuencias de email
 
-Detailed templates for common email sequences.
+Plantillas detalladas para secuencias frecuentes.
 
-## Contents
-- Welcome Sequence (Post-Signup)
-- Lead Nurture Sequence (Pre-Sale)
-- Re-Engagement Sequence
-- Onboarding Sequence (Product Users)
+## Contenido
 
-## Welcome Sequence (Post-Signup)
+- Secuencia de bienvenida.
+- Secuencia nurture pre-venta.
+- Secuencia de reenganche.
+- Secuencia de onboarding de producto.
 
-**Email 1: Welcome (Immediate)**
-- Subject: Welcome to [Product] — here's your first step
-- Deliver what was promised (lead magnet, access, etc.)
-- Single next action
-- Set expectations for future emails
+## Secuencia de bienvenida
 
-**Email 2: Quick Win (Day 1-2)**
-- Subject: Get your first [result] in 10 minutes
-- Enable small success
-- Build confidence
-- Link to helpful resource
+**Email 1: Bienvenida (inmediato)**
 
-**Email 3: Story/Why (Day 3-4)**
-- Subject: Why we built [Product]
-- Origin story or mission
-- Connect emotionally
-- Show you understand their problem
+- Asunto: Bienvenido a [Producto] - este es tu primer paso.
+- Entregar lo prometido: lead magnet, acceso, recurso o confirmación.
+- Una sola acción siguiente.
+- Explicar qué emails recibirá después.
 
-**Email 4: Social Proof (Day 5-6)**
-- Subject: How [Customer] achieved [Result]
-- Case study or testimonial
-- Relatable to their situation
-- Soft CTA to explore
+**Email 2: Victoria rápida (día 1-2)**
 
-**Email 5: Overcome Objection (Day 7-8)**
-- Subject: "I don't have time for X" — sound familiar?
-- Address common hesitation
-- Reframe the obstacle
-- Show easy path forward
+- Asunto: Consigue tu primer [resultado] en 10 minutos.
+- Facilitar un éxito pequeño.
+- Construir confianza.
+- Enlazar a un recurso útil.
 
-**Email 6: Core Feature (Day 9-11)**
-- Subject: Have you tried [Feature] yet?
-- Highlight underused capability
-- Show clear benefit
-- Direct CTA to try it
+**Email 3: Historia / por qué (día 3-4)**
 
-**Email 7: Conversion (Day 12-14)**
-- Subject: Ready to [upgrade/buy/commit]?
-- Summarize value
-- Clear offer
-- Urgency if appropriate
-- Risk reversal (guarantee, trial)
+- Asunto: Por qué creamos [Producto].
+- Historia de origen o misión.
+- Conectar emocionalmente.
+- Demostrar que entiendes su problema.
 
----
+**Email 4: Prueba social (día 5-6)**
 
-## Lead Nurture Sequence (Pre-Sale)
+- Asunto: Cómo [Cliente] consiguió [Resultado].
+- Caso, testimonio o ejemplo.
+- Relacionarlo con su situación.
+- CTA suave para explorar.
 
-**Email 1: Deliver + Introduce (Immediate)**
-- Deliver the lead magnet
-- Brief intro to who you are
-- Preview what's coming
+**Email 5: Objeción (día 7-8)**
 
-**Email 2: Expand on Topic (Day 2-3)**
-- Related insight to lead magnet
-- Establish expertise
-- Light CTA to content
+- Asunto: "No tengo tiempo para X". ¿Te suena?
+- Abordar una duda común.
+- Reencuadrar el obstáculo.
+- Mostrar un camino simple.
 
-**Email 3: Problem Deep-Dive (Day 4-5)**
-- Articulate their problem deeply
-- Show you understand
-- Hint at solution
+**Email 6: Funcionalidad o servicio clave (día 9-11)**
 
-**Email 4: Solution Framework (Day 6-8)**
-- Your approach/methodology
-- Educational, not salesy
-- Builds toward your product
+- Asunto: ¿Has probado [Funcionalidad]?
+- Destacar una capacidad infrautilizada.
+- Mostrar beneficio claro.
+- CTA directo para probarla.
 
-**Email 5: Case Study (Day 9-11)**
-- Real results from real customer
-- Specific and relatable
-- Soft CTA
+**Email 7: Conversión (día 12-14)**
 
-**Email 6: Differentiation (Day 12-14)**
-- Why your approach is different
-- Address alternatives
-- Build preference
-
-**Email 7: Objection Handler (Day 15-18)**
-- Common concern addressed
-- FAQ or myth-busting
-- Reduce friction
-
-**Email 8: Direct Offer (Day 19-21)**
-- Clear pitch
-- Strong value proposition
-- Specific CTA
-- Urgency if available
+- Asunto: ¿Listo para [comprar / reservar / dar el paso]?
+- Resumir valor.
+- Oferta clara.
+- Urgencia si es honesta.
+- Reversión de riesgo: garantía, prueba o llamada.
 
 ---
 
-## Re-Engagement Sequence
+## Secuencia nurture pre-venta
 
-**Email 1: Check-In (Day 30-60 of inactivity)**
-- Subject: Is everything okay, [Name]?
-- Genuine concern
-- Ask what happened
-- Easy win to re-engage
+**Email 1: Entrega + presentación (inmediato)**
 
-**Email 2: Value Reminder (Day 2-3 after)**
-- Subject: Remember when you [achieved X]?
-- Remind of past value
-- What's new since they left
-- Quick CTA
+- Entregar el lead magnet.
+- Presentarte brevemente.
+- Anticipar lo que viene.
 
-**Email 3: Incentive (Day 5-7 after)**
-- Subject: We miss you — here's something special
-- Offer if appropriate
-- Limited time
-- Clear CTA
+**Email 2: Ampliación del tema (día 2-3)**
 
-**Email 4: Last Chance (Day 10-14 after)**
-- Subject: Should we stop emailing you?
-- Honest and direct
-- One-click to stay or go
-- Clean the list if no response
+- Insight relacionado con el lead magnet.
+- Establecer autoridad.
+- CTA ligero a contenido.
+
+**Email 3: Profundización en el problema (día 4-5)**
+
+- Articular el problema con precisión.
+- Mostrar comprensión.
+- Apuntar hacia la solución.
+
+**Email 4: Framework de solución (día 6-8)**
+
+- Explicar tu enfoque o metodología.
+- Educativo, no agresivo.
+- Preparar el terreno para el producto o servicio.
+
+**Email 5: Caso o ejemplo (día 9-11)**
+
+- Resultado real o escenario creíble.
+- Específico y reconocible.
+- CTA suave.
+
+**Email 6: Diferenciación (día 12-14)**
+
+- Por qué tu enfoque es distinto.
+- Comparar alternativas con respeto.
+- Construir preferencia.
+
+**Email 7: Objeciones (día 15-18)**
+
+- Resolver una preocupación frecuente.
+- FAQ o mito.
+- Reducir fricción.
+
+**Email 8: Oferta directa (día 19-21)**
+
+- Pitch claro.
+- Propuesta de valor fuerte.
+- CTA específico.
+- Urgencia solo si existe.
 
 ---
 
-## Onboarding Sequence (Product Users)
+## Secuencia de reenganche
 
-Coordinate with in-app onboarding. Email supports, doesn't duplicate.
+**Email 1: Check-in (día 30-60 de inactividad)**
 
-**Email 1: Welcome + First Step (Immediate)**
-- Confirm signup
-- One critical action
-- Link directly to that action
+- Asunto: ¿Todo bien, [Nombre]?
+- Preocupación genuina.
+- Preguntar qué pasó.
+- Acción sencilla para volver.
 
-**Email 2: Getting Started Help (Day 1)**
-- If they haven't completed step 1
-- Quick tip or video
-- Support option
+**Email 2: Recordatorio de valor (día 2-3 después)**
 
-**Email 3: Feature Highlight (Day 2-3)**
-- Key feature they should know
-- Specific use case
-- In-app link
+- Asunto: ¿Recuerdas cuando conseguiste [X]?
+- Recordar valor anterior.
+- Contar novedades desde que se fue.
+- CTA rápida.
 
-**Email 4: Success Story (Day 4-5)**
-- Customer who succeeded
-- Relatable journey
-- Motivational
+**Email 3: Incentivo (día 5-7 después)**
 
-**Email 5: Check-In (Day 7)**
-- How's it going?
-- Ask for feedback
-- Offer help
+- Asunto: Queremos que vuelvas - aquí tienes algo especial.
+- Oferta si procede.
+- Tiempo limitado si es real.
+- CTA claro.
 
-**Email 6: Advanced Tip (Day 10-12)**
-- Power feature
-- For engaged users
-- Level-up content
+**Email 4: Última oportunidad (día 10-14 después)**
 
-**Email 7: Upgrade/Expand (Day 14+)**
-- For trial users: conversion push
-- For free users: upgrade prompt
-- For paid: expansion opportunity
+- Asunto: ¿Dejamos de escribirte?
+- Honesto y directo.
+- Un clic para quedarse o salir.
+- Limpiar lista si no responde.
+
+---
+
+## Secuencia de onboarding de producto
+
+Coordinar con onboarding in-app. El email apoya, no duplica.
+
+**Email 1: Bienvenida + primer paso (inmediato)**
+
+- Confirmar registro.
+- Una acción crítica.
+- Enlace directo a esa acción.
+
+**Email 2: Ayuda para empezar (día 1)**
+
+- Si no completó el primer paso.
+- Consejo rápido o vídeo.
+- Opción de soporte.
+
+**Email 3: Funcionalidad clave (día 2-3)**
+
+- Capacidad que debe conocer.
+- Caso de uso específico.
+- Enlace in-app.
+
+**Email 4: Historia de éxito (día 4-5)**
+
+- Cliente o usuario que lo consiguió.
+- Trayectoria reconocible.
+- Motivación sin exagerar.
+
+**Email 5: Check-in (día 7)**
+
+- Preguntar cómo va.
+- Pedir feedback.
+- Ofrecer ayuda.
+
+**Email 6: Consejo avanzado (día 10-12)**
+
+- Funcionalidad potente.
+- Para usuarios activos.
+- Contenido para subir nivel.
+
+**Email 7: Mejora de plan o expansión (día 14+)**
+
+- Trials: empujar conversión.
+- Free: invitar a upgrade.
+- Pago: oportunidad de expansión.

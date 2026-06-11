@@ -344,14 +344,19 @@ phase_prereqs() {
 
     # Python 3 (optional but recommended) — detección multi-plataforma
     local python_cmd=""
-    for candidate in python3 "py -3" python python3.11 python3.12 python3.10; do
-        if command -v $(echo "$candidate" | awk '{print $1}') >/dev/null 2>&1; then
-            if $candidate --version 2>&1 | grep -qE "Python 3\.(9|10|11|12|13)"; then
+    for candidate in python3 python python3.12 python3.11 python3.10; do
+        if command -v "$candidate" >/dev/null 2>&1; then
+            if "$candidate" --version 2>&1 | grep -qE "Python 3\.(9|[1-9][0-9])"; then
                 python_cmd="$candidate"
                 break
             fi
         fi
     done
+    if [ -z "$python_cmd" ] && [ "$os_type" = "windows-bash" ] && command -v py >/dev/null 2>&1; then
+        if py -3 --version 2>&1 | grep -qE "Python 3\.(9|[1-9][0-9])"; then
+            python_cmd="py -3"
+        fi
+    fi
     # Casos especiales Windows (rutas absolutas comunes)
     if [ -z "$python_cmd" ] && [ "$os_type" = "windows-bash" ]; then
         for win_path in "/c/Python311/python.exe" "/c/Python312/python.exe" "/c/Python310/python.exe"; do

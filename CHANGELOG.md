@@ -8,6 +8,23 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+- Sincronizadas las menciones de Sinapsis vendored a v4.6.1 en README y CITATION.
+- Unificado el conteo documental a 26 skills core + 2 opcionales (cognito, arnes).
+- Añadido H1 descriptivo al comando `.claude/commands/doctor.md`.
+- Ajustada la detección de Python en `scripts/install.sh` para separar candidatos POSIX de `py -3` en Windows/Git Bash.
+
+### Added
+- Nueva guía `docs/skill-creation-guide.md` con patrón real de skills, frontmatter, validación y ejemplo mínimo.
+- Nueva plantilla `brand-context/glossary-template.json` para correcciones STT de `tool-zoom-summary`.
+
+### Changed
+- `docs/quickstart.md` ampliado con árbol de decisión y plan de primera semana.
+- `docs/skills-recommended.md` reescrito como tabla accionable sin inventar URLs nuevas.
+- Traducidas al español las skills `find-skills`, `marketing-email-sequence` y `strategy-web-research`.
+- `marketing-email-sequence` ahora carga brand voice/contexto real del OS y pasa cada email por `tool-output-verifier`.
+- `tool-zoom-summary` menciona la plantilla de glosario cuando no existe `brand-context/glossary.json`.
+
 ### En curso — Memory Upgrade (Store / Inject / Recall · benchmark vs Agentic OS Phase 2)
 - **v0.8.3 · P2 captura de contenido** (opcional) — resumen legible por sesión que engorda el corpus. Bajo valor incremental: ya hay daily summaries indexados; pendiente de decidir si aporta.
 - **v0.9.0 · P4 Team OS** — memoria/permisos compartidos para equipo. Módulo AVANZADO opcional (no core), decisión de negocio pendiente.

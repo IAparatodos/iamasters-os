@@ -115,7 +115,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 **Memoria de trabajo (memo manual)**: cuando el operador diga *"recuerda esto"*, *"apunta que"*, *"nota que"* o *"para la próxima"*, escribe el ítem en la sección que corresponda de `context/working-memory.md` (Hilos activos / Notas de entorno / Decisiones pendientes), con dedup y respetando el tope. Visible de inmediato en esta sesión; en sesiones futuras se carga al inicio.
 
-**Skills curadas (`.claude/skills/`)** — 25 skills core (ver registry abajo).
+**Skills curadas (`.claude/skills/`)** — 26 skills core + 2 opcionales (cognito, arnes) (ver registry abajo).
 
 **Niveles de proyecto**:
 1. **Single task** — pregunta directa. Output a `projects/<skill-name>/<fecha>-<titulo>/`.
@@ -145,7 +145,7 @@ Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 | `seis-sombreros` | Seis sombreros de De Bono con **anti-ancla, 7 variantes, marcos divergentes y matriz de decisión** (v0.7) |
 | `decisions-log` | Diario append-only de decisiones |
 | `health-check` | Diagnóstico del OS con **validación profunda y detección de drift** (v0.6) |
-| `find-skills` | Descoverabilidad por intent |
+| `find-skills` | Descubre e instala skills por intención del usuario |
 | `recuerda` | **Recall de memoria local** (SQLite+FTS5) con fuente citada — base para todos, semántico opt-in (v0.8.2) |
 
 ### `_meta/_optional/` (2)
@@ -164,7 +164,7 @@ Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 | `marketing-icp` | Cliente ideal |
 | `marketing-copywriting` | Copy con humanizer gate |
 | `marketing-content-repurposing` | Distribución multiplataforma |
-| `marketing-email-sequence` | Secuencias de email |
+| `marketing-email-sequence` | Secuencias de email con brand voice y gate obligatorio |
 
 ### `automation/` (2)
 
@@ -178,7 +178,7 @@ Capa 1 = 26 skills core + 2 opcionales (cognito, arnes).
 | Skill | Descripción |
 |---|---|
 | `metodo-ias` | Método I.A.S. (Intención · Acción · Síntesis) anti-AI-brain-fry — diario + semanal (v0.7) |
-| `strategy-web-research` | Research con subagentes |
+| `strategy-web-research` | Investigación web citada con plan y subagentes |
 
 ### `tools/` (4)
 

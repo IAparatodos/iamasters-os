@@ -136,6 +136,8 @@ Las transcripciones automáticas confunden términos técnicos. **ANTES de ident
 Read brand-context/glossary.json
 ```
 
+Si no existe `brand-context/glossary.json`, copiar `brand-context/glossary-template.json` como punto de partida y pedir al operador que confirme o amplíe términos propios.
+
 Procedimiento:
 
 1. **Aplicar replacements con `confidence=high`** automáticamente.

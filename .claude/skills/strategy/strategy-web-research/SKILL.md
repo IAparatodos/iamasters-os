@@ -1,77 +1,85 @@
 ---
 name: strategy-web-research
-description: Searches multiple web sources, synthesizes findings, and produces cited research reports using delegated subagents. Use when the user asks to research a topic online, search the web, look something up, find current information, compare options, or produce a research report.
+description: Investiga temas online, busca información actual, compara opciones y produce informes citados a partir de varias fuentes web. Usar cuando el usuario pida "investiga este tema", "busca en internet", "mira información actual", "compara opciones" o "hazme un informe". English triggers: web research, search the web, research report.
 ---
 
-# Web Research Skill
+# Skill de investigación web
 
-## Research Process
+## Proceso de investigación
 
-### Step 1: Create and Save Research Plan
+### Paso 1: crear y guardar el plan de investigación
 
-Before delegating to subagents, you MUST:
+Antes de delegar en subagentes, debes:
 
-1. **Create a research folder** - Organize all research files in a dedicated folder relative to the current working directory:
+1. **Crear una carpeta de investigación** relativa al directorio actual:
+
+   ```bash
+   mkdir research_[nombre_del_tema]
    ```
-   mkdir research_[topic_name]
+
+   Así los archivos quedan organizados y no ensucian el directorio de trabajo.
+
+2. **Analizar la pregunta de investigación** y dividirla en subtemas distintos, sin solapamiento.
+
+3. **Escribir un archivo de plan** en `research_[nombre_del_tema]/research_plan.md` con:
+   - Pregunta principal.
+   - 2-5 subtemas concretos.
+   - Qué información se espera de cada subtema.
+   - Cómo se sintetizarán los resultados.
+
+Guía de planificación:
+
+- **Búsqueda factual simple**: 1-2 subtemas.
+- **Análisis comparativo**: 1 subtema por elemento comparado, máximo 3.
+- **Investigaciones complejas**: 3-5 subtemas.
+
+### Paso 2: delegar a subagentes de investigación
+
+Para cada subtema del plan:
+
+1. Usa la herramienta `task` para crear un subagente de investigación con:
+   - Pregunta clara y específica, sin acrónimos ambiguos.
+   - Instrucciones para guardar hallazgos en `research_[nombre_del_tema]/findings_[subtema].md`.
+   - Presupuesto máximo de 3-5 búsquedas web.
+
+2. Ejecuta hasta 3 subagentes en paralelo cuando sea eficiente.
+
+Plantilla para subagentes:
+
+```text
+Investiga [TEMA ESPECÍFICO]. Usa web_search para recopilar información.
+Cuando termines, usa write_file para guardar tus hallazgos en research_[nombre_del_tema]/findings_[subtema].md.
+Incluye hechos clave, citas relevantes y URLs fuente.
+Usa 3-5 búsquedas web como máximo.
+```
+
+### Paso 3: sintetizar hallazgos
+
+Cuando terminen los subagentes:
+
+1. **Revisa los archivos locales de hallazgos**:
+   - Primero ejecuta `list_files research_[nombre_del_tema]`.
+   - Después usa `read_file` con rutas locales, por ejemplo `research_[nombre_del_tema]/findings_*.md`.
+   - Importante: usa `read_file` solo para archivos locales, no para URLs.
+
+2. **Sintetiza la información**:
+   - Responde directamente a la pregunta original.
+   - Integra insights de todos los subtemas.
+   - Cita fuentes concretas con URL.
+   - Señala lagunas, límites o incertidumbre.
+
+3. **Escribe informe final** si el usuario lo pide:
+
+   ```text
+   research_[nombre_del_tema]/research_report.md
    ```
-   This keeps files organized and prevents clutter in the working directory.
 
-2. **Analyze the research question** - Break it down into distinct, non-overlapping subtopics
+Nota: si necesitas consultar información adicional desde una URL, usa `fetch_url`, no `read_file`.
 
-3. **Write a research plan file** - Use the `write_file` tool to create `research_[topic_name]/research_plan.md` containing:
-   - The main research question
-   - 2-5 specific subtopics to investigate
-   - Expected information from each subtopic
-   - How results will be synthesized
+## Buenas prácticas
 
-**Planning Guidelines:**
-- **Simple fact-finding**: 1-2 subtopics
-- **Comparative analysis**: 1 subtopic per comparison element (max 3)
-- **Complex investigations**: 3-5 subtopics
-
-### Step 2: Delegate to Research Subagents
-
-For each subtopic in your plan:
-
-1. **Use the `task` tool** to spawn a research subagent with:
-   - Clear, specific research question (no acronyms)
-   - Instructions to write findings to a file: `research_[topic_name]/findings_[subtopic].md`
-   - Budget: 3-5 web searches maximum
-
-2. **Run up to 3 subagents in parallel** for efficient research
-
-**Subagent Instructions Template:**
-```
-Research [SPECIFIC TOPIC]. Use the web_search tool to gather information.
-After completing your research, use write_file to save your findings to research_[topic_name]/findings_[subtopic].md.
-Include key facts, relevant quotes, and source URLs.
-Use 3-5 web searches maximum.
-```
-
-### Step 3: Synthesize Findings
-
-After all subagents complete:
-
-1. **Review the findings files** that were saved locally:
-   - First run `list_files research_[topic_name]` to see what files were created
-   - Then use `read_file` with the **file paths** (e.g., `research_[topic_name]/findings_*.md`)
-   - **Important**: Use `read_file` for LOCAL files only, not URLs
-
-2. **Synthesize the information** - Create a comprehensive response that:
-   - Directly answers the original question
-   - Integrates insights from all subtopics
-   - Cites specific sources with URLs (from the findings files)
-   - Identifies any gaps or limitations
-
-3. **Write final report** (optional) - Use `write_file` to create `research_[topic_name]/research_report.md` if requested
-
-**Note**: If you need to fetch additional information from URLs, use the `fetch_url` tool, not `read_file`.
-
-## Best Practices
-
-- **Plan before delegating** - Always write research_plan.md first
-- **Clear subtopics** - Ensure each subagent has distinct, non-overlapping scope
-- **File-based communication** - Have subagents save findings to files, not return them directly
-- **Systematic synthesis** - Read all findings files before creating final response
-- **Stop appropriately** - Don't over-research; 3-5 searches per subtopic is usually sufficient
+- Planifica antes de delegar.
+- Mantén subtemas claros y sin solapamiento.
+- Haz que los subagentes guarden hallazgos en archivos.
+- Lee todos los hallazgos antes de responder.
+- No sobreinvestigues: 3-5 búsquedas por subtema suelen bastar.
