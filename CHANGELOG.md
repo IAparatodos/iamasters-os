@@ -8,6 +8,19 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Roadmap
+- **P2 captura de contenido** (opcional) — resumen legible por sesión que engorda el corpus. Bajo valor incremental: ya hay daily summaries indexados; pendiente de decidir si aporta.
+- **Team OS** — memoria/permisos compartidos para equipo. Módulo AVANZADO opcional (no core), decisión de negocio pendiente. (Antes etiquetado como v0.9.0; re-planificado al dedicar la v0.9.0 a Loop Engineering.)
+- Skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) con voice profile del operador.
+- Dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis).
+- v1.0.0: release pública estable + vídeos Loom + landing en iamastersacademy.com/os.
+
+---
+
+## [0.9.0] — 2026-06-11
+
+**Loop Engineering release.** El OS aprende a convertir trabajo repetitivo en sistemas: `automation-loop-engine` como skill core, 5 plantillas de loops listas para usar, 8 skills nuevas portadas del arsenal de Angel, catálogo 100% en español y CI anti-drift.
+
 ### Fixed
 - Sincronizadas las menciones de Sinapsis vendored a v4.6.1 en README y CITATION.
 - Unificado el conteo documental a 35 skills core + 2 opcionales (cognito, arnes).
@@ -36,15 +49,6 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Traducidas al español las skills `find-skills`, `marketing-email-sequence` y `strategy-web-research`.
 - `marketing-email-sequence` ahora carga brand voice/contexto real del OS y pasa cada email por `tool-output-verifier`.
 - `tool-zoom-summary` menciona la plantilla de glosario cuando no existe `brand-context/glossary.json`.
-
-### En curso — Memory Upgrade (Store / Inject / Recall · benchmark vs Agentic OS Phase 2)
-- **v0.8.3 · P2 captura de contenido** (opcional) — resumen legible por sesión que engorda el corpus. Bajo valor incremental: ya hay daily summaries indexados; pendiente de decidir si aporta.
-- **v0.9.0 · P4 Team OS** — memoria/permisos compartidos para equipo. Módulo AVANZADO opcional (no core), decisión de negocio pendiente.
-
-### Backlog
-- skills nativas en español adicionales (proposal-writer, youtube-transcript, linkedin-posts) con voice profile del operador
-- dashboard del OS (pendiente decidir si se integra con dashboard Sinapsis)
-- v1.0.0: release pública estable + vídeos Loom + landing en iamastersacademy.com/os
 
 ---
 

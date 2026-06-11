@@ -27,6 +27,9 @@ for name in tracked:
     path = Path(name)
     if name == ".env.example":
         continue
+    # The scanner itself and the CI workflow list the patterns literally.
+    if name in ("scripts/ci/check-secrets.sh", ".github/workflows/validate.yml"):
+        continue
     if "vendor" in path.parts:
         continue
     try:

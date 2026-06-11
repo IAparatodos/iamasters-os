@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iamasters-academy/iamasters-os/releases"><img src="https://img.shields.io/badge/version-v0.8.2-orange.svg" alt="Version"></a>
+  <a href="https://github.com/iamasters-academy/iamasters-os/releases"><img src="https://img.shields.io/badge/version-v0.9.0-orange.svg" alt="Version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="vendor/sinapsis/"><img src="https://img.shields.io/badge/engine-Sinapsis%20v4.6.1-purple.svg" alt="Powered by Sinapsis"></a>
   <a href="https://angelaparicio.com"><img src="https://img.shields.io/badge/maintained%20by-Angel%20Aparicio-ff8c42.svg" alt="Maintained by Angel Aparicio"></a>
@@ -257,6 +257,7 @@ Ver [`CHANGELOG.md`](CHANGELOG.md) para historial detallado.
 - **v0.8.0** ✅ Skill opt-in `arnes` — arrancar proyectos software por niveles (Express 5 min / Estándar 20-30 min / PRO 1-2 h) para vibe-coders no técnicos. Concepto fs-scaffold de Fernando Montero, adaptación de Angel Aparicio. Vendoreada en `vendor/arnes/`, activable con `/install-skill arnes`. Repo upstream: [iamasters-academy/arnes](https://github.com/iamasters-academy/arnes)
 - **v0.8.1** ✅ Memory Upgrade · Fase A — memoria de trabajo (`context/working-memory.md`) inyectada al inicio + memo manual ("recuerda esto")
 - **v0.8.2** ✅ Memory Upgrade · P1 — recall local `/recuerda` (SQLite + FTS5, cero servicios externos) con fuente citada; CodeGraph documentado como add-on opcional; auto-sync del índice
+- **v0.9.0** ✅ **Loop Engineering** — skill core `automation-loop-engine` (radar proactivo, canvas de 9 campos, niveles A0–A3, REGLAS.md) + 5 plantillas de loops + comandos `/loops` y `/evalua-loop` + 8 skills nuevas (seguridad, quality gate, Meta Ads, transcripción social, auditoría legal y de seguridad web, investigación profunda, stack recommender) + catálogo 100% en español + CI anti-drift
 - **v1.0.0** — release pública estable + vídeos Loom integrados + landing en iamastersacademy.com/os
 
 ## 🌱 Sistema vivo

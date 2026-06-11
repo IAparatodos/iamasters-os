@@ -128,7 +128,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 ---
 
-## Skills registry (v0.8.2)
+## Skills registry (v0.9.0)
 
 Capa 1 = 35 skills core + 2 opcionales (cognito, arnes).
 
