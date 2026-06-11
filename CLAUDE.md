@@ -84,6 +84,19 @@ Cuando todo está configurado y la instalación está completa:
 
 ---
 
+## Actualizar el OS
+
+Cuando el usuario diga **"actualízate"**, **"actualiza el OS"**, **"actualízate a la última versión"**, **"tráete los cambios nuevos"**, **"ponme la última versión de iAmasters OS"** o **"update"** → ejecuta el comando `/actualiza`:
+
+```bash
+git pull --ff-only
+bash scripts/update.sh
+```
+
+`update.sh` preserva SIEMPRE lo del operador (skills propias, `brand-context/`, `context/`, `projects/`, `clients/`, `loops/`); solo actualiza el código del OS, las skills curadas y Sinapsis vendored. Si `git pull` falla por cambios locales, NO fuerces: explica qué tiene modificado y pregunta. Al terminar, resume lo nuevo desde el `CHANGELOG.md`.
+
+---
+
 ## Sobre el sistema
 
 ### Sinapsis (engine de memoria)
@@ -128,7 +141,7 @@ Lo que aporta este repo encima de Sinapsis:
 
 ---
 
-## Skills registry (v0.9.0)
+## Skills registry (v0.9.1)
 
 Capa 1 = 35 skills core + 2 opcionales (cognito, arnes).
 
@@ -212,7 +225,7 @@ Capa 1 = 35 skills core + 2 opcionales (cognito, arnes).
 
 ### Slash commands
 
-`/install` · `/install-status` · `/start-here` · `/wrap-up` · `/doctor` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende` · `/deep-dive` · `/recuerda` · `/loops` · `/evalua-loop`
+`/install` · `/install-status` · `/start-here` · `/wrap-up` · `/doctor` · `/actualiza` · `/add-client` · `/install-skill` · `/install-mcp` · `/aprende` · `/deep-dive` · `/recuerda` · `/loops` · `/evalua-loop`
 
 Los dos primeros (`/install`, `/install-status`) son nuevos en v0.6 y son la **única vía oficial** para gestionar la instalación desde dentro de Claude Code.
 

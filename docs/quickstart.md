@@ -66,6 +66,10 @@ Luego lee `docs/multi-client-guide.md`.
 
 Lee `docs/skill-creation-guide.md`.
 
+### ¿Quieres la última versión?
+
+Dile a tu OS: **"actualízate a la última versión"** (o `/actualiza`). Trae los cambios e instala sin tocar tus skills ni tu contexto.
+
 ### ¿Algo va mal?
 
 Ejecuta `/doctor`. Fuera de Claude Code: `bash scripts/install.sh --resume`.

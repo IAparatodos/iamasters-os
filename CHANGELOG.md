@@ -17,6 +17,14 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.9.1] — 2026-06-11
+
+### Added
+- Comando `/actualiza` y disparadores en lenguaje natural ("actualízate a la última versión", "update"...) → corre `git pull` + `bash scripts/update.sh` preservando el contenido del operador. Pensado para miembros no técnicos: actualizan sin tocar la terminal.
+- Sección "Actualizar el OS" en `CLAUDE.md` y rama en `docs/quickstart.md`.
+
+---
+
 ## [0.9.0] — 2026-06-11
 
 **Loop Engineering release.** El OS aprende a convertir trabajo repetitivo en sistemas: `automation-loop-engine` como skill core, 5 plantillas de loops listas para usar, 8 skills nuevas portadas del arsenal de Angel, catálogo 100% en español y CI anti-drift.
