@@ -1,0 +1,21 @@
+{
+  "brand": "",
+  "slug": "",
+  "language": "es",
+  "author": "",
+  "design": { "font": "", "turquesa": "", "petroleo": "", "fondo": "claro", "nota": "" },
+  "youtube": { "channelId": "", "channelName": "" },
+  "socials": {
+    "telegram": "", "instagram": "", "tiktok": "",
+    "linkedin": "", "facebook": "", "x": ""
+  },
+  "whatsappGroups": [
+    { "name": "", "tone": "" }
+  ],
+  "blog": { "site": "", "wpEnvPrefix": "WP", "category": "", "style": "", "scheduleAfterPremiereMin": 10 },
+  "landings": {
+    "ejemplo": { "url": "", "anchors": {} }
+  },
+  "cardBadges": "",
+  "rules": []
+}

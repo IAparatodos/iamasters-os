@@ -2,6 +2,8 @@
 .env
 .env.local
 .env.*.local
+.env.bak*
+.env.*.bak
 !.env.example
 
 # MCP — config local con secretos (n8n API key). Template versionado: .mcp.json.example

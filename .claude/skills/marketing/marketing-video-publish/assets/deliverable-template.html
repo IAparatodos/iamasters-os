@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{BRAND}} · {{VIDEO_TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --turquesa:{{TURQUESA}};          /* p.ej. #4dd2d0 */
+    --turquesa-dark:{{TURQUESA_DARK}}; /* p.ej. #2bb3b1 */
+    --petroleo:{{PETROLEO}};          /* p.ej. #102e35 */
+    --petroleo-soft:#1c4049;
+    --bg:#f4f8f8; --card:#fff; --text:#193238; --muted:#5e7b80; --line:#dCe9e9;
+    --shadow:0 10px 30px rgba(16,46,53,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px 80px}
+  .wrap{max-width:920px;margin:0 auto}
+  header{background:linear-gradient(135deg,var(--petroleo),var(--petroleo-soft));border-radius:24px;padding:38px 40px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  header::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,var(--turquesa) 0%,transparent 70%);opacity:.25}
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--turquesa);margin-bottom:14px}
+  header h1{font-size:30px;font-weight:800;line-height:1.2;margin-bottom:6px}
+  header p{color:#bfe0e0;font-weight:400;font-size:15px}
+  .videolink{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--turquesa);color:var(--petroleo);font-weight:700;text-decoration:none;padding:11px 20px;border-radius:12px;font-size:14px;transition:transform .15s ease}
+  .videolink:hover{transform:translateY(-2px)}
+  section{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-top:22px;box-shadow:var(--shadow)}
+  .sec-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+  .sec-title{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:800;color:var(--petroleo)}
+  .sec-title .ic{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:rgba(77,210,208,.16);display:grid;place-items:center;font-size:17px}
+  .hint{font-size:12.5px;color:var(--muted);font-weight:400;margin:-6px 0 14px}
+  pre{background:#f7fbfb;border:1px solid var(--line);border-radius:12px;padding:18px;white-space:pre-wrap;word-wrap:break-word;font-family:'Poppins',sans-serif;font-size:13.5px;color:#22444a;line-height:1.65}
+  .copybtn{border:none;cursor:pointer;background:var(--petroleo);color:#fff;font-family:'Poppins';font-weight:600;font-size:12.5px;padding:8px 15px;border-radius:9px;transition:background .15s ease;display:inline-flex;align-items:center;gap:7px}
+  .copybtn:hover{background:var(--turquesa-dark)}
+  .copybtn.done{background:var(--turquesa);color:var(--petroleo)}
+  .chapters{list-style:none;display:flex;flex-direction:column;gap:2px}
+  .chapters li{display:flex;gap:14px;align-items:baseline;padding:8px 10px;border-radius:8px}
+  .chapters li:nth-child(odd){background:#f7fbfb}
+  .chapters .t{font-weight:800;color:var(--turquesa-dark);font-variant-numeric:tabular-nums;font-size:13.5px;min-width:48px}
+  .chapters .d{font-size:14px;color:#2b4a50}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{background:rgba(16,46,53,.06);color:var(--petroleo);font-size:12.5px;font-weight:500;padding:6px 12px;border-radius:20px;border:1px solid var(--line)}
+  .hashrow .tag{background:rgba(77,210,208,.14);border-color:rgba(77,210,208,.4);font-weight:600}
+  .socials{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .social{display:flex;align-items:center;gap:13px;padding:13px 15px;border-radius:13px;border:1px solid var(--line);background:#f7fbfb;text-decoration:none;color:var(--petroleo)}
+  .social .sic{width:38px;height:38px;flex:0 0 38px;border-radius:10px;display:grid;place-items:center;font-size:18px;color:#fff;font-weight:700}
+  .social .nm{font-weight:700;font-size:14px}.social .hd{font-size:12px;color:var(--muted)}
+  .ctacard{display:block;margin-top:7px;padding:8px 11px;background:rgba(77,210,208,.12);border:1px solid rgba(77,210,208,.4);border-radius:9px;font-size:12.5px;color:#1c4049}
+  .ctacard b{color:var(--turquesa-dark)}
+  footer{text-align:center;margin-top:40px;color:var(--muted);font-size:12px}
+  /* MODO EDICIÓN */
+  .edbar{position:fixed;top:14px;right:14px;z-index:999;display:flex;gap:8px;align-items:center;background:rgba(16,46,53,.96);padding:8px 10px;border-radius:12px;box-shadow:0 8px 24px rgba(16,46,53,.25)}
+  .edbar button{border:none;cursor:pointer;font-family:'Poppins';font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:8px;background:#27505a;color:#cfeeee}
+  .edbar button:hover{background:#356b77}
+  .edbar #ed-toggle.on{background:var(--turquesa);color:var(--petroleo)}
+  .edbar #ed-status{color:#8fc4c4;font-size:11.5px;padding-right:4px}
+  body.editing [data-edit]{outline:1.5px dashed rgba(77,210,208,.7);outline-offset:3px;border-radius:4px}
+  body.editing [data-edit]:focus{outline:2px solid var(--turquesa);background:rgba(77,210,208,.06)}
+  @media print{.edbar{display:none}}
+</style>
+</head>
+<body>
+
+<div class="edbar">
+  <button id="ed-toggle">✏️ Modo edición</button>
+  <button id="ed-download">💾 Descargar</button>
+  <button id="ed-reset">↺ Restaurar</button>
+  <span id="ed-status"></span>
+</div>
+
+<div class="wrap">
+  <header>
+    <span class="kicker">Paquete de publicación · {{BRAND}}</span>
+    <h1>{{VIDEO_TITLE_SHORT}}</h1>
+    <p>{{SUBTITLE}} · duración {{DURATION}}</p>
+    <a class="videolink" href="{{VIDEO_URL}}" target="_blank">▶ {{VIDEO_URL_SHORT}}</a>
+  </header>
+
+  <!-- La skill genera aquí las secciones, en este orden, siguiendo metadata.md de la skill `youtube`:
+       1. Título (recomendado + alternativas, con score VidIQ)
+       2. Descripción (copy/paste, primeras líneas con keyword, capítulos reales)
+       3. Capítulos (timestamps del transcript)
+       4. CTAs del vídeo + tarjeta (teaser + llamada a la acción por minuto)
+       5. Comentario fijado
+       6. Etiquetas (pocas, oficial) + Hashtags (3-4)
+       7. Redes sociales (handles del brand profile)
+       8. Copies para redes (1 por plataforma)
+       9. WhatsApp — N grupos del brand profile (mensaje DISTINTO por tono)
+      10. Análisis VidIQ (scores + keyword pivot)
+      Cada bloque de texto copiable va en <pre id="..."> con su <button class="copybtn" data-copy="id">.
+  -->
+  {{SECCIONES}}
+
+  <footer>
+    Generado para <b>{{BRAND}}</b> · Vídeo <b>{{VIDEO_URL_SHORT}}</b><br>
+    {{FOOTER_NOTE}}
+  </footer>
+</div>
+
+<script>
+  // --- COPIAR ---
+  document.querySelectorAll('.copybtn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.dataset.copy);
+      var txt=el.innerText||el.textContent;
+      navigator.clipboard.writeText(txt).then(function(){
+        var old=btn.innerHTML; btn.classList.add('done'); btn.innerHTML='✓ Copiado';
+        setTimeout(function(){btn.classList.remove('done');btn.innerHTML=old;},1600);
+      });
+    });
+  });
+  // --- MODO EDICIÓN (autoguardado versionado) ---
+  (function(){
+    var KEY='ytpub-edits-{{SLUG_VIDEO}}';
+    var VERSION='{{VERSION}}';  // súbelo al regenerar/añadir secciones → descarta cachés viejas
+    var wrap=document.querySelector('.wrap');
+    var status=document.getElementById('ed-status');
+    var SEL='pre, h1, h2, .title-main span, .alt-list li, .chapters .d, .tag, .ctacard, .nm, .hd, footer';
+    wrap.querySelectorAll(SEL).forEach(function(el){ el.setAttribute('data-edit','1'); });
+    try{
+      var raw=localStorage.getItem(KEY);
+      if(raw){ var o=JSON.parse(raw);
+        if(o && o.v===VERSION && o.html){ wrap.innerHTML=o.html; wrap.querySelectorAll(SEL).forEach(function(el){el.setAttribute('data-edit','1');}); status.textContent='✓ cambios guardados'; }
+        else { localStorage.removeItem(KEY); } }
+    }catch(e){ try{localStorage.removeItem(KEY);}catch(_){} }
+    function setEditable(on){ wrap.querySelectorAll('[data-edit]').forEach(function(el){ el.contentEditable=on?'true':'false'; }); document.body.classList.toggle('editing',on); }
+    var editing=false, tgl=document.getElementById('ed-toggle');
+    tgl.addEventListener('click',function(){ editing=!editing; setEditable(editing); tgl.classList.toggle('on',editing); tgl.innerHTML=editing?'✓ Editando':'✏️ Modo edición'; status.textContent=editing?'edita los textos…':''; });
+    var t; wrap.addEventListener('input',function(){ clearTimeout(t); t=setTimeout(function(){ try{ localStorage.setItem(KEY,JSON.stringify({v:VERSION,html:wrap.innerHTML})); status.textContent='✓ guardado '+new Date().toLocaleTimeString().slice(0,5);}catch(e){status.textContent='⚠️ no se pudo guardar';} },500); });
+    document.getElementById('ed-download').addEventListener('click',function(){ wrap.querySelectorAll('[data-edit]').forEach(function(el){el.removeAttribute('contenteditable');}); var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML; if(editing){wrap.querySelectorAll('[data-edit]').forEach(function(el){el.contentEditable='true';});} var b=new Blob([html],{type:'text/html'}); var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='{{SLUG_VIDEO}}-editado.html'; a.click(); });
+    document.getElementById('ed-reset').addEventListener('click',function(){ if(confirm('¿Borrar tus cambios y volver al original?')){ try{localStorage.removeItem(KEY);}catch(e){} location.reload(); } });
+  })();
+</script>
+</body>
+</html>

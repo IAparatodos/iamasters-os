@@ -1,0 +1,79 @@
+{
+  "brand": "Código AdrIA",
+  "slug": "codigo-adria",
+  "language": "es",
+  "author": "Ricardo Hoyos",
+  "design": {
+    "font": "Poppins",
+    "turquesa": "#4dd2d0",
+    "turquesaDark": "#2bb3b1",
+    "petroleo": "#102e35",
+    "fondo": "claro",
+    "nota": "Sistema de diseño innegociable. No inventar estilos."
+  },
+  "youtube": {
+    "channelId": "UCOtGqmL_uyLk0enssSoUQag",
+    "channelName": "Código AdrIA",
+    "handle": "@codigoadria"
+  },
+  "subscribe": {
+    "text": "🔴 Bienvenidos a Código AdrIA.\nSUSCRÍBETE AHORA:",
+    "url": "https://bit.ly/codigoadria",
+    "nota": "Va detrás de la frase gancho, al inicio de la descripción de YouTube."
+  },
+  "leadMagnet": "https://codigoadria.com/sistema-descripciones-gratis/",
+  "socials": {
+    "youtube": "@codigoadria",
+    "instagram": "https://www.instagram.com/fit_adria/",
+    "tiktok": "https://www.tiktok.com/@codigo.adria",
+    "x": "https://x.com/ricardohoyos1",
+    "facebook": "https://www.facebook.com/profile.php?id=61582795198629",
+    "telegram": "https://t.me/+l-LTIVJ7LlhiYjQ8",
+    "linkedin": "linkedin.com/in/ricardohoyos",
+    "_confirmado": "Handles confirmados por Ricardo 2026-06-10. OJO: LinkedIn es ricardohoyos (SIN perez). Telegram es invite link (NO t.me/codigoadria)."
+  },
+  "telegramGroup": {
+    "name": "Telegram · seguidores fieles (perfil IA)",
+    "tone": "Técnico/insider. Human-in-the-loop, observabilidad, JSON del workflow. No el tono explicativo de las redes públicas."
+  },
+  "whatsappGroups": [
+    {
+      "name": "Amigos (máster digitalización · dueños de pequeños negocios)",
+      "tone": "Cercano, de tú a tú ('compis'), SIN tecnicismos. Enfoque: 'esto nos toca a los que tenemos un negocio'. Ofrecer ayuda directa al final."
+    },
+    {
+      "name": "El Club de la IA (expertos + novatos)",
+      "tone": "Divulgativo con sustancia. Explicar desde cero para principiantes + aportar caso real/métricas para avanzados. Invitar a opinar."
+    },
+    {
+      "name": "El Club de la IA en Valencia (Ricardo es referente)",
+      "tone": "Autoridad/líder. Ángulo LOCAL (Valencia). Ofrecer montar una sesión/charla en persona."
+    }
+  ],
+  "blog": {
+    "site": "https://www.codigoadria.com",
+    "wpEnvPrefix": "WP",
+    "category": "General",
+    "style": "Editorial con embed del vídeo",
+    "scheduleAfterPremiereMin": 10
+  },
+  "landings": {
+    "diagnostico-ia": {
+      "url": "https://www.codigoadria.com/diagnostico-ia/",
+      "anchors": { "seguimiento": "#seguimiento" }
+    },
+    "curso-automatizaciones": {
+      "url": "https://www.codigoadria.com/curso-automatizaciones/"
+    }
+  },
+  "cardBadges": "~/iamasters-os/brand-context/assets/youtube/tarjetas/",
+  "rules": [
+    "UN SOLO ENLACE por publicación de redes (el del vídeo). Con dos, la preview no sabe qué imagen coger y nadie pincha dos. El curso/lead magnet va en la descripción + comentario fijado del vídeo, no en el post.",
+    "Descripción de YouTube: empieza con FRASE GANCHO (primera línea, lo que se ve en SERP, complementa el título sin repetirlo) + bloque de SUSCRIPCIÓN justo detrás.",
+    "Etiquetas ≠ hashtags. Hashtags: en la descripción (máx 15, 3 primeros sobre el título). Etiquetas (tags): campo aparte, límite 500 car PERO papel mínimo → POCAS (~8-12), muy relevantes, lideradas por la keyword principal. NO llenar a 500.",
+    "Keywords: liderar con lo que la gente BUSCA de verdad (validar en VidIQ), no con jerga de marca.",
+    "Telegram (grupo de fieles) y WhatsApp = público experto en IA → tono técnico/insider.",
+    "Verificar datos de plataformas en documentación oficial antes de afirmar.",
+    "Guardar siempre copia local; no depender del push."
+  ]
+}
