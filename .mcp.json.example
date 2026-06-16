@@ -16,6 +16,15 @@
       "_comment": "MCP oficial de Metricool — gestión multi-red social (IG, TikTok, LinkedIn, X, YouTube, etc.) + analytics + ads. Plan gratuito sirve. La primera vez te pedirá autenticación con tu cuenta Metricool.",
       "type": "http",
       "url": "https://ai.metricool.com/mcp"
+    },
+    "adrihosan": {
+      "_comment": "MCP local read-only del catálogo Adrihosan (WooCommerce + WordPress: productos, posts, FAQs). Motor genérico en mcp-servers/woo-catalog; la marca se elige con ENV_FILE. Las credenciales viven en ese .env, NO aquí. Para otra tienda (p.ej. solidker): duplica este bloque con key 'solidker' y ENV_FILE=.env.solidker. Ajusta 'cwd' a la ruta absoluta de tu repo.",
+      "command": "node",
+      "args": ["src/index.js"],
+      "cwd": "/ruta/absoluta/a/iamasters-os/mcp-servers/woo-catalog",
+      "env": {
+        "ENV_FILE": ".env"
+      }
     }
   }
 }
