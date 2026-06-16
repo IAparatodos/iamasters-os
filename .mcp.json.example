@@ -34,6 +34,15 @@
       "env": {
         "ENV_FILE": ".env"
       }
+    },
+    "solidker": {
+      "_comment": "MCP local read-only del contenido de Solidker (WordPress: páginas informativas + blog). 100% público, sin credenciales. Motor genérico en mcp-servers/wp-content; marca por ENV_FILE. Ajusta 'cwd' a la ruta absoluta de tu repo.",
+      "command": "node",
+      "args": ["src/index.js"],
+      "cwd": "/ruta/absoluta/a/iamasters-os/mcp-servers/wp-content",
+      "env": {
+        "ENV_FILE": ".env"
+      }
     }
   }
 }
