@@ -1,0 +1,24 @@
+{
+  "name": "woo-catalog-mcp",
+  "version": "0.1.0",
+  "description": "Read-only public MCP server exposing a WooCommerce + WordPress storefront (products, categories, blog posts, FAQs). One brand per .env — clone for any store.",
+  "type": "module",
+  "bin": {
+    "woo-catalog-mcp": "src/index.js"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:http": "node src/http.js",
+    "smoke": "node scripts/smoke.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "license": "MIT"
+}
