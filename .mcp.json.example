@@ -25,6 +25,15 @@
       "env": {
         "ENV_FILE": ".env"
       }
+    },
+    "codigoadria": {
+      "_comment": "MCP local read-only de los cursos de Código AdrIA (WordPress + Tutor LMS: cursos, temario, clases). 100% público, sin credenciales. Motor genérico en mcp-servers/codigoadria-courses; marca por ENV_FILE. Ajusta 'cwd' a la ruta absoluta de tu repo.",
+      "command": "node",
+      "args": ["src/index.js"],
+      "cwd": "/ruta/absoluta/a/iamasters-os/mcp-servers/codigoadria-courses",
+      "env": {
+        "ENV_FILE": ".env"
+      }
     }
   }
 }
